@@ -85,7 +85,7 @@ export const Scene4_PainQ3: React.FC = () => {
             fontSize: 58,
             fontWeight: 800,
             fontFamily: FONT,
-            color: C.text3,
+            color: C.text1,
             display: "flex",
             alignItems: "center",
             gap: 16,

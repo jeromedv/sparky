@@ -95,10 +95,10 @@ export const Scene9_HighValueWork: React.FC = () => {
             style={{
               opacity: l1Op,
               transform: `translateY(${l1Y}px)`,
-              fontSize: 34,
+              fontSize: 44,
               fontWeight: 600,
               fontFamily: FONT,
-              color: C.text2,
+              color: "#E2E8F0",
               marginBottom: 12,
             }}
           >
@@ -108,7 +108,7 @@ export const Scene9_HighValueWork: React.FC = () => {
             style={{
               opacity: l2Op,
               transform: `translateY(${l2Y}px)`,
-              fontSize: 40,
+              fontSize: 52,
               fontWeight: 800,
               fontFamily: FONT,
             }}
@@ -129,12 +129,12 @@ export const Scene9_HighValueWork: React.FC = () => {
               backgroundColor: "rgba(239,68,68,0.08)",
               border: "1px solid rgba(239,68,68,0.25)",
               borderRadius: 12,
-              padding: 20,
+              padding: 28,
             }}
           >
             <div
               style={{
-                fontSize: 14,
+                fontSize: 20,
                 fontWeight: 600,
                 fontFamily: FONT,
                 color: C.red,
@@ -159,7 +159,7 @@ export const Scene9_HighValueWork: React.FC = () => {
                   style={{
                     opacity: iOp,
                     transform: `translateX(${iX}px)`,
-                    fontSize: 13,
+                    fontSize: 18,
                     fontWeight: 400,
                     fontFamily: FONT,
                     color: C.text2,
@@ -181,12 +181,12 @@ export const Scene9_HighValueWork: React.FC = () => {
               backgroundColor: "rgba(16,185,129,0.08)",
               border: "1px solid rgba(16,185,129,0.25)",
               borderRadius: 12,
-              padding: 20,
+              padding: 28,
             }}
           >
             <div
               style={{
-                fontSize: 14,
+                fontSize: 20,
                 fontWeight: 600,
                 fontFamily: FONT,
                 color: C.green,
@@ -211,7 +211,7 @@ export const Scene9_HighValueWork: React.FC = () => {
                   style={{
                     opacity: iOp,
                     transform: `translateX(${iX}px)`,
-                    fontSize: 13,
+                    fontSize: 18,
                     fontWeight: 400,
                     fontFamily: FONT,
                     color: C.text2,

@@ -4,15 +4,16 @@ import {
   useCurrentFrame,
   useVideoConfig,
   interpolate,
+  interpolateColors,
   spring,
 } from "remotion";
 import { C, FONT, gridStyle } from "../styles";
 
 // Scene 8 — Before/After Metrics (duration 360 frames)
 // Title: local 10
-// Row 1: local 40, counter 70–110, badge spring 104
-// Row 2: local 140, counter 170–204
-// Row 3: local 220, counter 250–284
+// Row 1: local 40, counter 70–110, badge 110
+// Row 2: local 140, counter 170–210, badge 210
+// Row 3: local 220, counter 250–290, badge 290
 // Summary bar: local 300–320
 
 interface RowData {
@@ -20,7 +21,7 @@ interface RowData {
   counterFrom: number;
   counterTo: number;
   counterUnit: string;
-  afterText: string;
+  finalText: string;
   badge: string;
   slideStart: number;
   counterStart: number;
@@ -34,36 +35,36 @@ const rows: RowData[] = [
     counterFrom: 15,
     counterTo: 3,
     counterUnit: "h",
-    afterText: "3–5h",
-    badge: "–75%",
+    finalText: "3h",
+    badge: "–75% saved",
     slideStart: 40,
     counterStart: 70,
     counterEnd: 110,
-    badgeFrame: 104,
+    badgeFrame: 110,
   },
   {
     label: "Cash Flow Forecasting",
     counterFrom: 300,
     counterTo: 30,
     counterUnit: "min",
-    afterText: "30–45 min",
-    badge: "–85%",
+    finalText: "30min",
+    badge: "–85% saved",
     slideStart: 140,
     counterStart: 170,
-    counterEnd: 204,
-    badgeFrame: 198,
+    counterEnd: 210,
+    badgeFrame: 210,
   },
   {
     label: "Board & Investor Reporting",
-    counterFrom: 8,
-    counterTo: 1.5,
-    counterUnit: "h",
-    afterText: "~90 min",
-    badge: "–83%",
+    counterFrom: 480,
+    counterTo: 90,
+    counterUnit: "min",
+    finalText: "90min",
+    badge: "–83% saved",
     slideStart: 220,
     counterStart: 250,
-    counterEnd: 284,
-    badgeFrame: 278,
+    counterEnd: 290,
+    badgeFrame: 290,
   },
 ];
 
@@ -90,20 +91,32 @@ const MetricRow: React.FC<{ row: RowData; frame: number; fps: number }> = ({
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
+  // Color transitions from red to green as counter reaches target
+  const counterColor = interpolateColors(
+    frame,
+    [row.counterStart, row.counterEnd],
+    [C.red, C.green]
+  );
+
+  const counterDone = frame >= row.counterEnd;
+
+  // Arrow appears midway through counter
   const arrowOp = interpolate(
     frame,
-    [row.slideStart + 34, row.slideStart + 44],
+    [row.counterStart + 10, row.counterStart + 20],
     [0, 1],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  const afterOp = interpolate(
+  // Final value appears when counter finishes
+  const finalOp = interpolate(
     frame,
-    [row.slideStart + 54, row.slideStart + 64],
+    [row.counterEnd - 2, row.counterEnd + 8],
     [0, 1],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
+  // Badge springs in after counter finishes
   const badgeScale = spring({
     fps,
     frame: Math.max(0, frame - row.badgeFrame),
@@ -114,12 +127,7 @@ const MetricRow: React.FC<{ row: RowData; frame: number; fps: number }> = ({
     extrapolateRight: "clamp",
   });
 
-  const displayCounter =
-    row.counterUnit === "min"
-      ? `${Math.round(counterVal)}min`
-      : counterVal >= 2
-        ? `${Math.round(counterVal)}h`
-        : `${counterVal.toFixed(1)}h`;
+  const displayCounter = `${Math.round(counterVal)}${row.counterUnit}`;
 
   return (
     <div
@@ -132,7 +140,7 @@ const MetricRow: React.FC<{ row: RowData; frame: number; fps: number }> = ({
         backgroundColor: C.surface,
         border: `1px solid ${C.border}`,
         borderRadius: 12,
-        padding: "20px 32px",
+        padding: "24px 40px",
         width: "100%",
         maxWidth: 1100,
       }}
@@ -140,8 +148,8 @@ const MetricRow: React.FC<{ row: RowData; frame: number; fps: number }> = ({
       {/* Label */}
       <div
         style={{
-          flex: "0 0 260px",
-          fontSize: 16,
+          flex: "0 0 280px",
+          fontSize: 18,
           fontWeight: 600,
           fontFamily: FONT,
           color: C.text2,
@@ -150,31 +158,18 @@ const MetricRow: React.FC<{ row: RowData; frame: number; fps: number }> = ({
         {row.label}
       </div>
 
-      {/* Before */}
-      <div style={{ flex: "0 0 160px", textAlign: "center" }}>
-        <div
-          style={{
-            fontSize: 11,
-            fontWeight: 500,
-            fontFamily: FONT,
-            color: C.text3,
-            marginBottom: 4,
-            textTransform: "uppercase",
-            letterSpacing: 1,
-          }}
-        >
-          Before
-        </div>
-        <div
-          style={{
-            fontSize: 36,
-            fontWeight: 800,
-            fontFamily: FONT,
-            color: C.red,
-          }}
-        >
-          {displayCounter}
-        </div>
+      {/* Counter */}
+      <div
+        style={{
+          flex: "0 0 180px",
+          textAlign: "center",
+          fontSize: 48,
+          fontWeight: 800,
+          fontFamily: FONT,
+          color: counterColor,
+        }}
+      >
+        {displayCounter}
       </div>
 
       {/* Arrow */}
@@ -183,38 +178,26 @@ const MetricRow: React.FC<{ row: RowData; frame: number; fps: number }> = ({
           flex: "0 0 60px",
           textAlign: "center",
           opacity: arrowOp,
-          fontSize: 24,
+          fontSize: 28,
           color: C.text3,
         }}
       >
         →
       </div>
 
-      {/* After */}
-      <div style={{ flex: "0 0 160px", textAlign: "center", opacity: afterOp }}>
-        <div
-          style={{
-            fontSize: 11,
-            fontWeight: 500,
-            fontFamily: FONT,
-            color: C.text3,
-            marginBottom: 4,
-            textTransform: "uppercase",
-            letterSpacing: 1,
-          }}
-        >
-          After
-        </div>
-        <div
-          style={{
-            fontSize: 36,
-            fontWeight: 800,
-            fontFamily: FONT,
-            color: C.green,
-          }}
-        >
-          {row.afterText}
-        </div>
+      {/* Final value */}
+      <div
+        style={{
+          flex: "0 0 160px",
+          textAlign: "center",
+          opacity: finalOp,
+          fontSize: 48,
+          fontWeight: 800,
+          fontFamily: FONT,
+          color: C.green,
+        }}
+      >
+        {row.finalText}
       </div>
 
       {/* Badge */}
@@ -223,18 +206,18 @@ const MetricRow: React.FC<{ row: RowData; frame: number; fps: number }> = ({
           style={{
             opacity: badgeOp,
             transform: `scale(${badgeScale})`,
-            backgroundColor: "rgba(37,99,235,0.15)",
-            border: "1px solid rgba(37,99,235,0.40)",
-            borderRadius: 20,
-            padding: "6px 18px",
+            backgroundColor: "rgba(16,185,129,0.15)",
+            border: "1px solid rgba(16,185,129,0.40)",
+            borderRadius: 24,
+            padding: "8px 20px",
           }}
         >
           <span
             style={{
-              fontSize: 20,
+              fontSize: 22,
               fontWeight: 800,
               fontFamily: FONT,
-              color: C.blue,
+              color: C.green,
             }}
           >
             {row.badge}
@@ -276,7 +259,8 @@ export const Scene8_BeforeAfter: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "50px 80px",
+        justifyContent: "center",
+        padding: "80px 80px 50px",
       }}
     >
       <div style={gridStyle} />
@@ -289,7 +273,7 @@ export const Scene8_BeforeAfter: React.FC = () => {
           fontWeight: 800,
           fontFamily: FONT,
           color: C.text1,
-          marginBottom: 40,
+          marginBottom: 50,
         }}
       >
         Real results. Every month.
@@ -303,8 +287,7 @@ export const Scene8_BeforeAfter: React.FC = () => {
           gap: 16,
           width: "100%",
           alignItems: "center",
-          flex: 1,
-          justifyContent: "center",
+          marginBottom: 40,
         }}
       >
         {rows.map((row, i) => (
@@ -320,7 +303,7 @@ export const Scene8_BeforeAfter: React.FC = () => {
           backgroundColor: "#1E3A5F",
           borderTop: `2px solid ${C.blue}`,
           borderRadius: 12,
-          padding: "20px 48px",
+          padding: "24px 48px",
           width: "100%",
           maxWidth: 1100,
           textAlign: "center",
@@ -328,21 +311,22 @@ export const Scene8_BeforeAfter: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 22,
+            fontSize: 32,
             fontWeight: 700,
             fontFamily: FONT,
+            color: C.text1,
           }}
         >
-          <span style={{ color: C.green }}>20–30 hours</span>
-          <span style={{ color: C.text1 }}> reclaimed every month.</span>
+          <span style={{ color: C.green }}>20–30 hours</span> reclaimed every
+          month.
         </div>
         <div
           style={{
             opacity: subOp,
-            fontSize: 15,
-            fontWeight: 400,
+            fontSize: 22,
+            fontWeight: 500,
             fontFamily: FONT,
-            color: C.text2,
+            color: "#E2E8F0",
             marginTop: 8,
           }}
         >

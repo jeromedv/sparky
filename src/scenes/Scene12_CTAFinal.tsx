@@ -23,6 +23,12 @@ export const Scene12_CTAFinal: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
+  // Intro line — local 5
+  const introOp = interpolate(frame, [5, 18], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
   // Line 1 — local 15
   const l1Scale = spring({
     fps,
@@ -123,6 +129,17 @@ export const Scene12_CTAFinal: React.FC = () => {
         >
           <div
             style={{
+              opacity: introOp,
+              fontSize: 28,
+              fontWeight: 600,
+              fontFamily: FONT,
+              color: "#E2E8F0",
+            }}
+          >
+            See exactly how this applies to your team.
+          </div>
+          <div
+            style={{
               opacity: l1Op,
               transform: `scale(${l1Scale})`,
               fontSize: 52,
@@ -148,10 +165,10 @@ export const Scene12_CTAFinal: React.FC = () => {
           <div
             style={{
               opacity: l3Op,
-              fontSize: 24,
+              fontSize: 28,
               fontWeight: 500,
               fontFamily: FONT,
-              color: C.text2,
+              color: "#E2E8F0",
               marginTop: 8,
             }}
           >
@@ -197,13 +214,13 @@ export const Scene12_CTAFinal: React.FC = () => {
             style={{
               opacity: urlOp,
               transform: `translateY(${urlY}px)`,
-              fontSize: 14,
+              fontSize: 18,
               fontWeight: 400,
               fontFamily: FONT,
-              color: C.text3,
+              color: C.text2,
             }}
           >
-            theaugmentedcfo.com/contact
+            Free · No commitment · 30-minute call
           </div>
         </AbsoluteFill>
       )}

@@ -105,10 +105,10 @@ export const Scene5_PainQ4: React.FC = () => {
         <div
           style={{
             opacity: l3Op,
-            fontSize: 28,
+            fontSize: 36,
             fontWeight: 600,
             fontFamily: FONT,
-            color: C.text2,
+            color: C.text1,
             marginTop: 16,
           }}
         >

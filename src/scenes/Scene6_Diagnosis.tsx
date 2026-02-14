@@ -83,10 +83,10 @@ export const Scene6_Diagnosis: React.FC = () => {
           style={{
             opacity: l1Op,
             transform: `translateY(${l1Y}px)`,
-            fontSize: 36,
+            fontSize: 44,
             fontWeight: 600,
             fontFamily: FONT,
-            color: C.text2,
+            color: "#E2E8F0",
           }}
         >
           This isn't a skills problem.
@@ -95,10 +95,10 @@ export const Scene6_Diagnosis: React.FC = () => {
           style={{
             opacity: l2Op,
             transform: `translateY(${l2Y}px)`,
-            fontSize: 36,
+            fontSize: 44,
             fontWeight: 600,
             fontFamily: FONT,
-            color: C.text2,
+            color: "#E2E8F0",
           }}
         >
           It's a process problem.

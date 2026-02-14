@@ -152,10 +152,10 @@ export const Scene7_SolutionReveal: React.FC = () => {
           <span
             style={{
               opacity: p1Op,
-              fontSize: 20,
+              fontSize: 26,
               fontWeight: 500,
               fontFamily: FONT,
-              color: C.text3,
+              color: "#E2E8F0",
             }}
           >
             No new hires.
@@ -163,10 +163,10 @@ export const Scene7_SolutionReveal: React.FC = () => {
           <span
             style={{
               opacity: p2Op,
-              fontSize: 20,
+              fontSize: 26,
               fontWeight: 500,
               fontFamily: FONT,
-              color: C.text3,
+              color: "#E2E8F0",
             }}
           >
             No coding.
@@ -174,10 +174,10 @@ export const Scene7_SolutionReveal: React.FC = () => {
           <span
             style={{
               opacity: p3Op,
-              fontSize: 20,
+              fontSize: 26,
               fontWeight: 500,
               fontFamily: FONT,
-              color: C.text3,
+              color: "#E2E8F0",
             }}
           >
             No 6-month projects.

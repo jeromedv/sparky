@@ -85,6 +85,7 @@ export const Scene10_HowItWorks: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
         padding: "50px 140px",
       }}
     >
@@ -96,7 +97,6 @@ export const Scene10_HowItWorks: React.FC = () => {
           flexDirection: "column",
           alignItems: "center",
           width: "100%",
-          flex: 1,
         }}
       >
         {/* Title */}
@@ -121,8 +121,6 @@ export const Scene10_HowItWorks: React.FC = () => {
             flexDirection: "column",
             width: "100%",
             maxWidth: 900,
-            flex: 1,
-            justifyContent: "center",
           }}
         >
           {steps.map((step, i) => {
@@ -192,9 +190,9 @@ export const Scene10_HowItWorks: React.FC = () => {
                   <div
                     style={{
                       transform: `scale(${circleScale})`,
-                      width: 44,
-                      height: 44,
-                      borderRadius: 22,
+                      width: 48,
+                      height: 48,
+                      borderRadius: 24,
                       backgroundColor: step.circleColor,
                       display: "flex",
                       justifyContent: "center",
@@ -222,7 +220,7 @@ export const Scene10_HowItWorks: React.FC = () => {
                     >
                       <span
                         style={{
-                          fontSize: 20,
+                          fontSize: 26,
                           fontWeight: 700,
                           fontFamily: FONT,
                           color: C.text1,
@@ -253,10 +251,10 @@ export const Scene10_HowItWorks: React.FC = () => {
                     <div
                       style={{
                         opacity: subOp,
-                        fontSize: 14,
+                        fontSize: 18,
                         fontWeight: 400,
                         fontFamily: FONT,
-                        color: C.text2,
+                        color: "#E2E8F0",
                       }}
                     >
                       {step.subtitle}

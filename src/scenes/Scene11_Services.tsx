@@ -13,25 +13,25 @@ interface ServiceCard {
 
 const cards: ServiceCard[] = [
   {
-    icon: "🔍",
-    title: "AI Opportunity Scan",
-    sub: "2-hr workshop · Blueprints",
-    badgeText: "Start here",
-    badgeColor: C.blue,
+    icon: "⚡",
+    title: "Finance Automation Sprint",
+    sub: "4–6 weeks · 20–40 hours saved per month",
+    badgeText: "Most popular",
+    badgeColor: C.gold,
     delay: 40,
   },
   {
-    icon: "⚡",
-    title: "Finance Automation Sprint",
-    sub: "4–6 weeks · 20–40h saved/month",
-    badgeText: "Most popular",
-    badgeColor: C.gold,
+    icon: "🔍",
+    title: "AI Opportunity Scan",
+    sub: "2-hour workshop · Ready-to-use blueprints",
+    badgeText: "Start here",
+    badgeColor: C.blue,
     delay: 60,
   },
   {
     icon: "🔄",
     title: "Scaling & AI Advisory",
-    sub: "Monthly · Fractional AI Controller",
+    sub: "Ongoing support · Stay ahead as AI evolves",
     badgeText: "Ongoing",
     badgeColor: C.green,
     delay: 80,
@@ -58,6 +58,7 @@ export const Scene11_Services: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
         padding: "50px 120px",
       }}
     >
@@ -69,7 +70,6 @@ export const Scene11_Services: React.FC = () => {
           flexDirection: "column",
           alignItems: "center",
           width: "100%",
-          flex: 1,
         }}
       >
         {/* Title */}
@@ -93,9 +93,8 @@ export const Scene11_Services: React.FC = () => {
             gap: 24,
             width: "100%",
             maxWidth: 1100,
-            flex: 1,
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: "stretch",
           }}
         >
           {cards.map((card, i) => {
@@ -118,7 +117,7 @@ export const Scene11_Services: React.FC = () => {
                   backgroundColor: C.surface,
                   border: `1px solid ${C.border}`,
                   borderRadius: 12,
-                  padding: 20,
+                  padding: 28,
                   display: "flex",
                   flexDirection: "column",
                   gap: 12,
@@ -127,7 +126,7 @@ export const Scene11_Services: React.FC = () => {
                 <div style={{ fontSize: 32 }}>{card.icon}</div>
                 <div
                   style={{
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: 700,
                     fontFamily: FONT,
                     color: C.text1,
@@ -137,7 +136,7 @@ export const Scene11_Services: React.FC = () => {
                 </div>
                 <div
                   style={{
-                    fontSize: 13,
+                    fontSize: 16,
                     fontWeight: 400,
                     fontFamily: FONT,
                     color: C.text2,
@@ -157,8 +156,8 @@ export const Scene11_Services: React.FC = () => {
                           : "rgba(16,185,129,0.15)",
                     border: `1px solid ${card.badgeColor}40`,
                     borderRadius: 16,
-                    padding: "4px 14px",
-                    fontSize: 12,
+                    padding: "5px 16px",
+                    fontSize: 15,
                     fontWeight: 700,
                     fontFamily: FONT,
                     color: card.badgeColor,
