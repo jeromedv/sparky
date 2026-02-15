@@ -12,12 +12,6 @@ export const Scene6_Diagnosis: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const exit = interpolate(frame, [134, 149], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Line 1 — local 20
   const l1Op = interpolate(frame, [20, 38], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -27,7 +21,6 @@ export const Scene6_Diagnosis: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Line 2 — local 40
   const l2Op = interpolate(frame, [40, 58], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -37,13 +30,11 @@ export const Scene6_Diagnosis: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Divider — local 54
   const dividerX = interpolate(frame, [54, 74], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Line 3 — local 69
   const l3Op = interpolate(frame, [69, 89], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -67,12 +58,12 @@ export const Scene6_Diagnosis: React.FC = () => {
         alignItems: "center",
         flexDirection: "column",
         gap: 16,
+        padding: 80,
       }}
     >
       <div style={gridStyle} />
       <div
         style={{
-          opacity: exit,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -83,10 +74,10 @@ export const Scene6_Diagnosis: React.FC = () => {
           style={{
             opacity: l1Op,
             transform: `translateY(${l1Y}px)`,
-            fontSize: 44,
+            fontSize: 52,
             fontWeight: 600,
             fontFamily: FONT,
-            color: "#E2E8F0",
+            color: "#CBD5E1",
           }}
         >
           This isn't a skills problem.
@@ -95,10 +86,10 @@ export const Scene6_Diagnosis: React.FC = () => {
           style={{
             opacity: l2Op,
             transform: `translateY(${l2Y}px)`,
-            fontSize: 44,
+            fontSize: 52,
             fontWeight: 600,
             fontFamily: FONT,
-            color: "#E2E8F0",
+            color: "#CBD5E1",
           }}
         >
           It's a process problem.
@@ -117,7 +108,7 @@ export const Scene6_Diagnosis: React.FC = () => {
           style={{
             opacity: l3Op,
             transform: `translateY(${l3Y}px) scale(${weFixScale})`,
-            fontSize: 44,
+            fontSize: 52,
             fontWeight: 800,
             fontFamily: FONT,
           }}

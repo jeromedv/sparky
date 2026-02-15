@@ -5,11 +5,6 @@ import { C, FONT, gridStyle, glowRed } from "../styles";
 export const Scene3_PainQ2: React.FC = () => {
   const frame = useCurrentFrame();
 
-  const exit = interpolate(frame, [104, 119], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
   const l1Op = interpolate(frame, [10, 30], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -50,12 +45,12 @@ export const Scene3_PainQ2: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        padding: 80,
       }}
     >
       <div style={gridStyle} />
       <div
         style={{
-          opacity: exit,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -66,7 +61,7 @@ export const Scene3_PainQ2: React.FC = () => {
           style={{
             opacity: l1Op,
             transform: `translateY(${l1Y}px)`,
-            fontSize: 64,
+            fontSize: 80,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.text1,
@@ -78,7 +73,7 @@ export const Scene3_PainQ2: React.FC = () => {
           style={{
             opacity: l2Op,
             transform: `translateY(${l2Y}px)`,
-            fontSize: 64,
+            fontSize: 80,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.text1,
@@ -90,7 +85,7 @@ export const Scene3_PainQ2: React.FC = () => {
           style={{
             opacity: l3Op,
             transform: `translateY(${l3Y}px)`,
-            fontSize: 64,
+            fontSize: 80,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.red,

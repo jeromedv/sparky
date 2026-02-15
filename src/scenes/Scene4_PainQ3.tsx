@@ -12,11 +12,6 @@ export const Scene4_PainQ3: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const exit = interpolate(frame, [104, 119], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
   const l1Op = interpolate(frame, [10, 30], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -26,7 +21,6 @@ export const Scene4_PainQ3: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // 20-frame gap before line 2
   const l2Op = interpolate(frame, [30, 50], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -54,12 +48,12 @@ export const Scene4_PainQ3: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        padding: 80,
       }}
     >
       <div style={gridStyle} />
       <div
         style={{
-          opacity: exit,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -70,7 +64,7 @@ export const Scene4_PainQ3: React.FC = () => {
           style={{
             opacity: l1Op,
             transform: `translateY(${l1Y}px)`,
-            fontSize: 58,
+            fontSize: 80,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.text1,
@@ -82,7 +76,7 @@ export const Scene4_PainQ3: React.FC = () => {
           style={{
             opacity: l2Op,
             transform: `translateY(${l2Y}px)`,
-            fontSize: 58,
+            fontSize: 80,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.text1,
@@ -97,7 +91,7 @@ export const Scene4_PainQ3: React.FC = () => {
               opacity: emojiOp,
               transform: `scale(${emojiScale})`,
               display: "inline-block",
-              fontSize: 48,
+              fontSize: 64,
             }}
           >
             📊

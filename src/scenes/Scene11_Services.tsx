@@ -13,25 +13,25 @@ interface ServiceCard {
 
 const cards: ServiceCard[] = [
   {
-    icon: "⚡",
+    icon: "\u26A1",
     title: "Finance Automation Sprint",
-    sub: "4–6 weeks · 20–40 hours saved per month",
+    sub: "4\u20136 weeks \u00B7 20\u201340 hours saved per month",
     badgeText: "Most popular",
     badgeColor: C.gold,
     delay: 40,
   },
   {
-    icon: "🔍",
+    icon: "\uD83D\uDD0D",
     title: "AI Opportunity Scan",
-    sub: "2-hour workshop · Ready-to-use blueprints",
+    sub: "2-hour workshop \u00B7 Ready-to-use blueprints",
     badgeText: "Start here",
     badgeColor: C.blue,
     delay: 60,
   },
   {
-    icon: "🔄",
+    icon: "\uD83D\uDD04",
     title: "Scaling & AI Advisory",
-    sub: "Ongoing support · Stay ahead as AI evolves",
+    sub: "Ongoing support \u00B7 Stay ahead as AI evolves",
     badgeText: "Ongoing",
     badgeColor: C.green,
     delay: 80,
@@ -40,11 +40,6 @@ const cards: ServiceCard[] = [
 
 export const Scene11_Services: React.FC = () => {
   const frame = useCurrentFrame();
-
-  const exit = interpolate(frame, [164, 179], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
 
   const titleOp = interpolate(frame, [10, 28], [0, 1], {
     extrapolateLeft: "clamp",
@@ -59,13 +54,12 @@ export const Scene11_Services: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "50px 120px",
+        padding: 80,
       }}
     >
       <div style={gridStyle} />
       <div
         style={{
-          opacity: exit,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -76,7 +70,7 @@ export const Scene11_Services: React.FC = () => {
         <div
           style={{
             opacity: titleOp,
-            fontSize: 34,
+            fontSize: 72,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.text1,
@@ -117,16 +111,16 @@ export const Scene11_Services: React.FC = () => {
                   backgroundColor: C.surface,
                   border: `1px solid ${C.border}`,
                   borderRadius: 12,
-                  padding: 28,
+                  padding: 32,
                   display: "flex",
                   flexDirection: "column",
                   gap: 12,
                 }}
               >
-                <div style={{ fontSize: 32 }}>{card.icon}</div>
+                <div style={{ fontSize: 36 }}>{card.icon}</div>
                 <div
                   style={{
-                    fontSize: 20,
+                    fontSize: 26,
                     fontWeight: 700,
                     fontFamily: FONT,
                     color: C.text1,
@@ -136,10 +130,10 @@ export const Scene11_Services: React.FC = () => {
                 </div>
                 <div
                   style={{
-                    fontSize: 16,
-                    fontWeight: 400,
+                    fontSize: 20,
+                    fontWeight: 500,
                     fontFamily: FONT,
-                    color: C.text2,
+                    color: "#CBD5E1",
                   }}
                 >
                   {card.sub}
@@ -157,7 +151,7 @@ export const Scene11_Services: React.FC = () => {
                     border: `1px solid ${card.badgeColor}40`,
                     borderRadius: 16,
                     padding: "5px 16px",
-                    fontSize: 15,
+                    fontSize: 18,
                     fontWeight: 700,
                     fontFamily: FONT,
                     color: card.badgeColor,

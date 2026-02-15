@@ -13,8 +13,8 @@ export const C = {
   red: "#EF4444",
   gold: "#F59E0B",
   text1: "#F9FAFB",
-  text2: "#9CA3AF",
-  text3: "#4B5563",
+  text2: "#CBD5E1",
+  text3: "#94A3B8",
 };
 
 export const FONT = fontFamily;

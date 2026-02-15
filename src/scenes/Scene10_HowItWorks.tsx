@@ -8,13 +8,6 @@ import {
 } from "remotion";
 import { C, FONT, gridStyle } from "../styles";
 
-// Scene 10 — How It Works (duration 270 frames)
-// Title: local 10
-// Step 1: local 40, title 50, sub 60, connector 94–130
-// Step 2: local 130, connector 174–210
-// Step 3: local 210, badge 216
-// Exit: local 254–269
-
 interface Step {
   num: string;
   circleColor: string;
@@ -63,11 +56,6 @@ export const Scene10_HowItWorks: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const exit = interpolate(frame, [254, 269], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
   // Title
   const titleOp = interpolate(frame, [10, 28], [0, 1], {
     extrapolateLeft: "clamp",
@@ -86,13 +74,12 @@ export const Scene10_HowItWorks: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "50px 140px",
+        padding: 80,
       }}
     >
       <div style={gridStyle} />
       <div
         style={{
-          opacity: exit,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -104,7 +91,7 @@ export const Scene10_HowItWorks: React.FC = () => {
           style={{
             opacity: titleOp,
             transform: `translateY(${titleY}px)`,
-            fontSize: 38,
+            fontSize: 80,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.text1,
@@ -170,10 +157,12 @@ export const Scene10_HowItWorks: React.FC = () => {
                 })
               : 0;
             const badgeOp = step.badge
-              ? interpolate(frame, [step.badge.frame, step.badge.frame + 8], [0, 1], {
-                  extrapolateLeft: "clamp",
-                  extrapolateRight: "clamp",
-                })
+              ? interpolate(
+                  frame,
+                  [step.badge.frame, step.badge.frame + 8],
+                  [0, 1],
+                  { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+                )
               : 0;
 
             return (
@@ -186,18 +175,18 @@ export const Scene10_HowItWorks: React.FC = () => {
                     gap: 24,
                   }}
                 >
-                  {/* Circle */}
+                  {/* Circle — 56px diameter */}
                   <div
                     style={{
                       transform: `scale(${circleScale})`,
-                      width: 48,
-                      height: 48,
-                      borderRadius: 24,
+                      width: 56,
+                      height: 56,
+                      borderRadius: 28,
                       backgroundColor: step.circleColor,
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      fontSize: 20,
+                      fontSize: 24,
                       fontWeight: 800,
                       fontFamily: FONT,
                       color: "#FFFFFF",
@@ -208,19 +197,19 @@ export const Scene10_HowItWorks: React.FC = () => {
                   </div>
 
                   {/* Content */}
-                  <div style={{ flex: 1, paddingTop: 2 }}>
+                  <div style={{ flex: 1, paddingTop: 4 }}>
                     <div
                       style={{
                         opacity: titleOp2,
                         display: "flex",
                         alignItems: "center",
                         gap: 12,
-                        marginBottom: 6,
+                        marginBottom: 8,
                       }}
                     >
                       <span
                         style={{
-                          fontSize: 26,
+                          fontSize: 32,
                           fontWeight: 700,
                           fontFamily: FONT,
                           color: C.text1,
@@ -234,11 +223,11 @@ export const Scene10_HowItWorks: React.FC = () => {
                             opacity: badgeOp,
                             transform: `scale(${badgeScale})`,
                             display: "inline-block",
-                            backgroundColor: `rgba(16,185,129,0.15)`,
-                            border: `1px solid rgba(16,185,129,0.40)`,
+                            backgroundColor: "rgba(16,185,129,0.15)",
+                            border: "1px solid rgba(16,185,129,0.40)",
                             borderRadius: 16,
                             padding: "4px 14px",
-                            fontSize: 13,
+                            fontSize: 20,
                             fontWeight: 700,
                             fontFamily: FONT,
                             color: step.badge.color,
@@ -251,10 +240,10 @@ export const Scene10_HowItWorks: React.FC = () => {
                     <div
                       style={{
                         opacity: subOp,
-                        fontSize: 18,
-                        fontWeight: 400,
+                        fontSize: 22,
+                        fontWeight: 500,
                         fontFamily: FONT,
-                        color: "#E2E8F0",
+                        color: "#CBD5E1",
                       }}
                     >
                       {step.subtitle}
@@ -262,14 +251,14 @@ export const Scene10_HowItWorks: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Connector line */}
+                {/* Connector line — now #2563EB */}
                 {i < steps.length - 1 && (
                   <div
                     style={{
-                      marginLeft: 21,
+                      marginLeft: 25,
                       width: 2,
                       height: 40,
-                      backgroundColor: C.border,
+                      backgroundColor: "#2563EB",
                       transform: `scaleY(${connectorH})`,
                       transformOrigin: "top",
                       marginTop: 6,

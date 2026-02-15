@@ -1,5 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Sequence } from "remotion";
+import { SceneTransition } from "./SceneTransition";
 import { Scene1_LogoIntro } from "./scenes/Scene1_LogoIntro";
 import { Scene2_PainQ1 } from "./scenes/Scene2_PainQ1";
 import { Scene3_PainQ2 } from "./scenes/Scene3_PainQ2";
@@ -34,51 +35,75 @@ export const AugmentedCFO: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: "#0A0F1E" }}>
       <Sequence from={0} durationInFrames={46}>
-        <Scene1_LogoIntro />
+        <SceneTransition durationInFrames={46}>
+          <Scene1_LogoIntro />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={46} durationInFrames={120}>
-        <Scene2_PainQ1 />
+        <SceneTransition durationInFrames={120}>
+          <Scene2_PainQ1 />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={166} durationInFrames={120}>
-        <Scene3_PainQ2 />
+        <SceneTransition durationInFrames={120}>
+          <Scene3_PainQ2 />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={286} durationInFrames={120}>
-        <Scene4_PainQ3 />
+        <SceneTransition durationInFrames={120}>
+          <Scene4_PainQ3 />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={406} durationInFrames={120}>
-        <Scene5_PainQ4 />
+        <SceneTransition durationInFrames={120}>
+          <Scene5_PainQ4 />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={526} durationInFrames={150}>
-        <Scene6_Diagnosis />
+        <SceneTransition durationInFrames={150}>
+          <Scene6_Diagnosis />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={676} durationInFrames={180}>
-        <Scene7_SolutionReveal />
+        <SceneTransition durationInFrames={180}>
+          <Scene7_SolutionReveal />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={856} durationInFrames={360}>
-        <Scene8_BeforeAfter />
+        <SceneTransition durationInFrames={360}>
+          <Scene8_BeforeAfter />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={1216} durationInFrames={180}>
-        <Scene9_HighValueWork />
+        <SceneTransition durationInFrames={180}>
+          <Scene9_HighValueWork />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={1396} durationInFrames={270}>
-        <Scene10_HowItWorks />
+        <SceneTransition durationInFrames={270}>
+          <Scene10_HowItWorks />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={1666} durationInFrames={180}>
-        <Scene11_Services />
+        <SceneTransition durationInFrames={180}>
+          <Scene11_Services />
+        </SceneTransition>
       </Sequence>
 
       <Sequence from={1846} durationInFrames={254}>
-        <Scene12_CTAFinal />
+        <SceneTransition durationInFrames={254}>
+          <Scene12_CTAFinal />
+        </SceneTransition>
       </Sequence>
     </AbsoluteFill>
   );

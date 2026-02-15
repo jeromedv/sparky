@@ -26,6 +26,7 @@ export const Scene1_LogoIntro: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        padding: 80,
       }}
     >
       <div style={gridStyle} />
@@ -33,7 +34,7 @@ export const Scene1_LogoIntro: React.FC = () => {
         style={{
           opacity: logoOpacity,
           transform: `translateY(${logoY}px)`,
-          fontSize: 48,
+          fontSize: 80,
           fontWeight: 800,
           fontFamily: FONT,
           color: C.text1,

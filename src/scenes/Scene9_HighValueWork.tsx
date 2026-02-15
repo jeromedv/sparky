@@ -21,12 +21,7 @@ const teamItems = [
 export const Scene9_HighValueWork: React.FC = () => {
   const frame = useCurrentFrame();
 
-  const exit = interpolate(frame, [164, 179], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Line 1 — local 20
+  // Line 1
   const l1Op = interpolate(frame, [20, 38], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -36,7 +31,7 @@ export const Scene9_HighValueWork: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Line 2 — local 40
+  // Line 2
   const l2Op = interpolate(frame, [40, 58], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -46,7 +41,7 @@ export const Scene9_HighValueWork: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Card A slides in from left — local 70
+  // Card A slides in from left
   const cardAOp = interpolate(frame, [70, 90], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -56,7 +51,7 @@ export const Scene9_HighValueWork: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Card B slides in from right — local 80
+  // Card B slides in from right
   const cardBOp = interpolate(frame, [80, 100], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -74,14 +69,13 @@ export const Scene9_HighValueWork: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "60px 100px",
+        padding: 80,
         gap: 32,
       }}
     >
       <div style={gridStyle} />
       <div
         style={{
-          opacity: exit,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -95,10 +89,10 @@ export const Scene9_HighValueWork: React.FC = () => {
             style={{
               opacity: l1Op,
               transform: `translateY(${l1Y}px)`,
-              fontSize: 44,
+              fontSize: 52,
               fontWeight: 600,
               fontFamily: FONT,
-              color: "#E2E8F0",
+              color: "#CBD5E1",
               marginBottom: 12,
             }}
           >
@@ -108,7 +102,7 @@ export const Scene9_HighValueWork: React.FC = () => {
             style={{
               opacity: l2Op,
               transform: `translateY(${l2Y}px)`,
-              fontSize: 52,
+              fontSize: 64,
               fontWeight: 800,
               fontFamily: FONT,
             }}
@@ -129,13 +123,14 @@ export const Scene9_HighValueWork: React.FC = () => {
               backgroundColor: "rgba(239,68,68,0.08)",
               border: "1px solid rgba(239,68,68,0.25)",
               borderRadius: 12,
-              padding: 28,
+              padding: 32,
+              minHeight: 320,
             }}
           >
             <div
               style={{
-                fontSize: 20,
-                fontWeight: 600,
+                fontSize: 24,
+                fontWeight: 700,
                 fontFamily: FONT,
                 color: C.red,
                 marginBottom: 16,
@@ -159,10 +154,10 @@ export const Scene9_HighValueWork: React.FC = () => {
                   style={{
                     opacity: iOp,
                     transform: `translateX(${iX}px)`,
-                    fontSize: 18,
-                    fontWeight: 400,
+                    fontSize: 22,
+                    fontWeight: 500,
                     fontFamily: FONT,
-                    color: C.text2,
+                    color: "#CBD5E1",
                     padding: "6px 0",
                   }}
                 >
@@ -181,13 +176,14 @@ export const Scene9_HighValueWork: React.FC = () => {
               backgroundColor: "rgba(16,185,129,0.08)",
               border: "1px solid rgba(16,185,129,0.25)",
               borderRadius: 12,
-              padding: 28,
+              padding: 32,
+              minHeight: 320,
             }}
           >
             <div
               style={{
-                fontSize: 20,
-                fontWeight: 600,
+                fontSize: 24,
+                fontWeight: 700,
                 fontFamily: FONT,
                 color: C.green,
                 marginBottom: 16,
@@ -211,10 +207,10 @@ export const Scene9_HighValueWork: React.FC = () => {
                   style={{
                     opacity: iOp,
                     transform: `translateX(${iX}px)`,
-                    fontSize: 18,
-                    fontWeight: 400,
+                    fontSize: 22,
+                    fontWeight: 500,
                     fontFamily: FONT,
-                    color: C.text2,
+                    color: "#CBD5E1",
                     padding: "6px 0",
                   }}
                 >
