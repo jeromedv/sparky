@@ -62,7 +62,7 @@ export const Scene4_PainQ3: React.FC = () => {
             fontSize: 58,
             fontWeight: 800,
             fontFamily: FONT,
-            color: "#4B5563",
+            color: C.red,
           }}
         >
           Insights are nowhere.
