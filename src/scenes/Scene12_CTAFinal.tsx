@@ -10,86 +10,84 @@ import { C, FONT, gridStyle, glowBlueCTA } from "../styles";
 
 // Scene 12 — CTA Final (duration 254 frames)
 // Phase 1 — Impact recap: local 0–100
-// Phase 2 — CTA button: local 100–200
+// Phase 2 — Question + CTA: local 100–200
 // Phase 3 — Outro: local 200–254
 
 export const Scene12_CTAFinal: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // ========== PHASE 1: Impact Recap (0–120) ==========
-  const phase1Out = interpolate(frame, [100, 118], [1, 0], {
+  // ========== PHASE 1: Impact Recap (0–100) ==========
+  const phase1Out = interpolate(frame, [80, 98], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Question line — local 5
-  const questionOp = interpolate(frame, [5, 25], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const questionY = interpolate(frame, [5, 25], [16, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Line 1 — local 35 (30 frames after question starts)
+  // Line 1 — local 10
   const l1Scale = spring({
     fps,
-    frame: Math.max(0, frame - 35),
+    frame: Math.max(0, frame - 10),
     config: { stiffness: 160, damping: 16 },
   });
-  const l1Op = interpolate(frame, [35, 48], [0, 1], {
+  const l1Op = interpolate(frame, [10, 23], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Line 2 — local 55
+  // Line 2 — local 30
   const l2Scale = spring({
     fps,
-    frame: Math.max(0, frame - 55),
+    frame: Math.max(0, frame - 30),
     config: { stiffness: 160, damping: 16 },
   });
-  const l2Op = interpolate(frame, [55, 68], [0, 1], {
+  const l2Op = interpolate(frame, [30, 43], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Line 3 — local 85
-  const l3Op = interpolate(frame, [85, 100], [0, 1], {
+  // Line 3 — local 50
+  const l3Op = interpolate(frame, [50, 65], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // ========== PHASE 2: CTA Button (120–200) ==========
-  const phase2In = interpolate(frame, [118, 125], [0, 1], {
+  // ========== PHASE 2: Question + CTA (100–200) ==========
+  const phase2In = interpolate(frame, [96, 103], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const phase2Out = interpolate(frame, [190, 205], [1, 0], {
+  const phase2Out = interpolate(frame, [185, 200], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const phase2Op = Math.min(phase2In, phase2Out);
 
+  // Step 1: Question — frame 100
+  const questionOp = interpolate(frame, [100, 120], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const questionY = interpolate(frame, [100, 120], [16, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Step 2: CTA button — frame 145 (25 frames after question starts)
   const btnScale = spring({
     fps,
-    frame: Math.max(0, frame - 120),
+    frame: Math.max(0, frame - 145),
     config: { stiffness: 200, damping: 14 },
   });
-  const btnOp = interpolate(frame, [120, 135], [0, 1], {
+  const btnOp = interpolate(frame, [145, 160], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
   const pulse =
-    frame > 144 ? 1 + 0.018 * Math.sin((frame - 144) / 9) : 1;
+    frame > 165 ? 1 + 0.018 * Math.sin((frame - 165) / 9) : 1;
 
-  const urlOp = interpolate(frame, [150, 168], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const urlY = interpolate(frame, [150, 168], [8, 0], {
+  // Step 3: Reassurance — frame 160 (15 frames after button)
+  const reassureOp = interpolate(frame, [160, 175], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -119,8 +117,8 @@ export const Scene12_CTAFinal: React.FC = () => {
     <AbsoluteFill style={{ background: `${glowBlueCTA}, ${C.bg}` }}>
       <div style={gridStyle} />
 
-      {/* PHASE 1 */}
-      {frame < 122 && (
+      {/* PHASE 1 — Impact Recap */}
+      {frame < 100 && (
         <AbsoluteFill
           style={{
             display: "flex",
@@ -131,18 +129,6 @@ export const Scene12_CTAFinal: React.FC = () => {
             opacity: phase1Out,
           }}
         >
-          <div
-            style={{
-              opacity: questionOp,
-              transform: `translateY(${questionY}px)`,
-              fontSize: 42,
-              fontWeight: 700,
-              fontFamily: FONT,
-              color: C.text1,
-            }}
-          >
-            What would your team do with 20 extra hours every month?
-          </div>
           <div
             style={{
               opacity: l1Op,
@@ -182,18 +168,34 @@ export const Scene12_CTAFinal: React.FC = () => {
         </AbsoluteFill>
       )}
 
-      {/* PHASE 2 */}
-      {frame >= 115 && frame < 210 && (
+      {/* PHASE 2 — Question + CTA */}
+      {frame >= 95 && frame < 202 && (
         <AbsoluteFill
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            gap: 16,
+            gap: 24,
             opacity: phase2Op,
           }}
         >
+          {/* Step 1: Question */}
+          <div
+            style={{
+              opacity: questionOp,
+              transform: `translateY(${questionY}px)`,
+              fontSize: 44,
+              fontWeight: 700,
+              fontFamily: FONT,
+              color: C.text1,
+              textAlign: "center",
+            }}
+          >
+            What would your team do with 20 extra hours every month?
+          </div>
+
+          {/* Step 2: CTA Button */}
           <div
             style={{
               opacity: btnOp,
@@ -215,10 +217,11 @@ export const Scene12_CTAFinal: React.FC = () => {
               Request a Free Assessment →
             </span>
           </div>
+
+          {/* Step 3: Reassurance */}
           <div
             style={{
-              opacity: urlOp,
-              transform: `translateY(${urlY}px)`,
+              opacity: reassureOp,
               fontSize: 22,
               fontWeight: 400,
               fontFamily: FONT,
@@ -230,7 +233,7 @@ export const Scene12_CTAFinal: React.FC = () => {
         </AbsoluteFill>
       )}
 
-      {/* PHASE 3 */}
+      {/* PHASE 3 — Outro */}
       {frame >= 198 && (
         <AbsoluteFill
           style={{

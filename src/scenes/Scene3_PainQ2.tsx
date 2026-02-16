@@ -23,16 +23,7 @@ export const Scene3_PainQ2: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  const l3Op = interpolate(frame, [34, 54], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const l3Y = interpolate(frame, [34, 54], [20, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  const underlineX = interpolate(frame, [36, 59], [0, 1], {
+  const underlineX = interpolate(frame, [36, 56], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -61,31 +52,19 @@ export const Scene3_PainQ2: React.FC = () => {
           style={{
             opacity: l1Op,
             transform: `translateY(${l1Y}px)`,
-            fontSize: 80,
+            fontSize: 64,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.text1,
           }}
         >
-          You have 3 days
+          Your board wants answers by Friday.
         </div>
         <div
           style={{
             opacity: l2Op,
             transform: `translateY(${l2Y}px)`,
-            fontSize: 80,
-            fontWeight: 800,
-            fontFamily: FONT,
-            color: C.text1,
-          }}
-        >
-          to close the books.
-        </div>
-        <div
-          style={{
-            opacity: l3Op,
-            transform: `translateY(${l3Y}px)`,
-            fontSize: 80,
+            fontSize: 64,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.red,
@@ -93,7 +72,7 @@ export const Scene3_PainQ2: React.FC = () => {
             display: "inline-block",
           }}
         >
-          Where do things stand?
+          You're still consolidating data.
           <div
             style={{
               position: "absolute",

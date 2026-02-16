@@ -14,7 +14,6 @@ interface Step {
   title: React.ReactNode;
   subtitle: React.ReactNode;
   startFrame: number;
-  badge?: { text: string; color: string; frame: number };
 }
 
 const steps: Step[] = [
@@ -30,14 +29,14 @@ const steps: Step[] = [
     circleColor: C.blue,
     title: (
       <>
-        We build the <span style={{ color: C.blue }}>automations</span>
+        We build the <span style={{ color: C.green }}>automations</span>
       </>
     ),
     subtitle: (
       <>
         Integrated directly into your{" "}
-        <span style={{ fontWeight: 700, color: C.blue }}>existing stack</span> —
-        no migrations
+        <span style={{ fontWeight: 700, color: C.green }}>existing stack</span>,
+        no migrations required.
       </>
     ),
     startFrame: 130,
@@ -45,10 +44,14 @@ const steps: Step[] = [
   {
     num: "3",
     circleColor: C.green,
-    title: "First automation live by Week 2",
+    title: (
+      <>
+        First automation live by{" "}
+        <span style={{ color: C.green }}>Week 2</span>
+      </>
+    ),
     subtitle: "You own everything. Full documentation. No vendor lock-in.",
     startFrame: 210,
-    badge: { text: "Week 2", color: C.green, frame: 216 },
   },
 ];
 
@@ -148,23 +151,6 @@ export const Scene10_HowItWorks: React.FC = () => {
                   )
                 : 0;
 
-            // Badge
-            const badgeScale = step.badge
-              ? spring({
-                  fps,
-                  frame: Math.max(0, frame - step.badge.frame),
-                  config: { stiffness: 260, damping: 10 },
-                })
-              : 0;
-            const badgeOp = step.badge
-              ? interpolate(
-                  frame,
-                  [step.badge.frame, step.badge.frame + 8],
-                  [0, 1],
-                  { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-                )
-              : 0;
-
             return (
               <div key={i} style={{ opacity: stepOp }}>
                 <div
@@ -201,9 +187,6 @@ export const Scene10_HowItWorks: React.FC = () => {
                     <div
                       style={{
                         opacity: titleOp2,
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 12,
                         marginBottom: 8,
                       }}
                     >
@@ -217,25 +200,6 @@ export const Scene10_HowItWorks: React.FC = () => {
                       >
                         {step.title}
                       </span>
-                      {step.badge && (
-                        <span
-                          style={{
-                            opacity: badgeOp,
-                            transform: `scale(${badgeScale})`,
-                            display: "inline-block",
-                            backgroundColor: "rgba(16,185,129,0.15)",
-                            border: "1px solid rgba(16,185,129,0.40)",
-                            borderRadius: 16,
-                            padding: "4px 14px",
-                            fontSize: 20,
-                            fontWeight: 700,
-                            fontFamily: FONT,
-                            color: step.badge.color,
-                          }}
-                        >
-                          {step.badge.text}
-                        </span>
-                      )}
                     </div>
                     <div
                       style={{

@@ -84,7 +84,7 @@ export const Scene11_Services: React.FC = () => {
         <div
           style={{
             display: "flex",
-            gap: 24,
+            gap: 32,
             width: "100%",
             maxWidth: 1100,
             justifyContent: "center",
@@ -111,16 +111,17 @@ export const Scene11_Services: React.FC = () => {
                   backgroundColor: C.surface,
                   border: `1px solid ${C.border}`,
                   borderRadius: 12,
-                  padding: 32,
+                  padding: 44,
+                  minHeight: 240,
                   display: "flex",
                   flexDirection: "column",
                   gap: 12,
                 }}
               >
-                <div style={{ fontSize: 36 }}>{card.icon}</div>
+                <div style={{ fontSize: 48 }}>{card.icon}</div>
                 <div
                   style={{
-                    fontSize: 26,
+                    fontSize: 32,
                     fontWeight: 700,
                     fontFamily: FONT,
                     color: C.text1,
@@ -130,7 +131,7 @@ export const Scene11_Services: React.FC = () => {
                 </div>
                 <div
                   style={{
-                    fontSize: 26,
+                    fontSize: 30,
                     fontWeight: 500,
                     fontFamily: FONT,
                     color: "#CBD5E1",
@@ -151,7 +152,7 @@ export const Scene11_Services: React.FC = () => {
                     border: `1px solid ${card.badgeColor}40`,
                     borderRadius: 16,
                     padding: "5px 16px",
-                    fontSize: 18,
+                    fontSize: 22,
                     fontWeight: 700,
                     fontFamily: FONT,
                     color: card.badgeColor,

@@ -114,7 +114,7 @@ export const Scene6_Diagnosis: React.FC = () => {
           }}
         >
           <span style={{ color: C.text1 }}>And that's exactly what </span>
-          <span style={{ color: C.blue }}>we fix.</span>
+          <span style={{ color: C.green }}>we fix.</span>
         </div>
       </div>
     </AbsoluteFill>
