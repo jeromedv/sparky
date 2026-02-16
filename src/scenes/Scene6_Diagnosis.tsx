@@ -74,7 +74,7 @@ export const Scene6_Diagnosis: React.FC = () => {
           style={{
             opacity: l1Op,
             transform: `translateY(${l1Y}px)`,
-            fontSize: 52,
+            fontSize: 56,
             fontWeight: 600,
             fontFamily: FONT,
             color: "#CBD5E1",
@@ -86,7 +86,7 @@ export const Scene6_Diagnosis: React.FC = () => {
           style={{
             opacity: l2Op,
             transform: `translateY(${l2Y}px)`,
-            fontSize: 52,
+            fontSize: 56,
             fontWeight: 600,
             fontFamily: FONT,
             color: "#CBD5E1",
@@ -108,7 +108,7 @@ export const Scene6_Diagnosis: React.FC = () => {
           style={{
             opacity: l3Op,
             transform: `translateY(${l3Y}px) scale(${weFixScale})`,
-            fontSize: 52,
+            fontSize: 64,
             fontWeight: 800,
             fontFamily: FONT,
           }}

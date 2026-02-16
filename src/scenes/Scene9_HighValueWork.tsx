@@ -129,7 +129,7 @@ export const Scene9_HighValueWork: React.FC = () => {
           >
             <div
               style={{
-                fontSize: 24,
+                fontSize: 32,
                 fontWeight: 700,
                 fontFamily: FONT,
                 color: C.red,
@@ -154,7 +154,7 @@ export const Scene9_HighValueWork: React.FC = () => {
                   style={{
                     opacity: iOp,
                     transform: `translateX(${iX}px)`,
-                    fontSize: 22,
+                    fontSize: 28,
                     fontWeight: 500,
                     fontFamily: FONT,
                     color: "#CBD5E1",
@@ -182,7 +182,7 @@ export const Scene9_HighValueWork: React.FC = () => {
           >
             <div
               style={{
-                fontSize: 24,
+                fontSize: 32,
                 fontWeight: 700,
                 fontFamily: FONT,
                 color: C.green,
@@ -207,7 +207,7 @@ export const Scene9_HighValueWork: React.FC = () => {
                   style={{
                     opacity: iOp,
                     transform: `translateX(${iX}px)`,
-                    fontSize: 22,
+                    fontSize: 28,
                     fontWeight: 500,
                     fontFamily: FONT,
                     color: "#CBD5E1",

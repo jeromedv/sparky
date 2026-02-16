@@ -240,7 +240,7 @@ export const Scene10_HowItWorks: React.FC = () => {
                     <div
                       style={{
                         opacity: subOp,
-                        fontSize: 22,
+                        fontSize: 30,
                         fontWeight: 500,
                         fontFamily: FONT,
                         color: "#CBD5E1",

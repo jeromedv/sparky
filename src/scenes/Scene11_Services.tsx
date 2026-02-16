@@ -130,7 +130,7 @@ export const Scene11_Services: React.FC = () => {
                 </div>
                 <div
                   style={{
-                    fontSize: 20,
+                    fontSize: 26,
                     fontWeight: 500,
                     fontFamily: FONT,
                     color: "#CBD5E1",

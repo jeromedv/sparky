@@ -32,8 +32,9 @@ export const Scene7_SolutionReveal: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  const aiColor = interpolateColors(frame, [50, 60], [C.text2, C.blue]);
+  const aiColor = interpolateColors(frame, [50, 60], [C.text2, C.green]);
 
+  // Line 2 — "So your team can focus…" fades in 20 frames after line 1
   const l2Op = interpolate(frame, [60, 78], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -43,6 +44,7 @@ export const Scene7_SolutionReveal: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
+  // Line 3 phrases — 15-frame stagger
   const p1Op = interpolate(frame, [100, 112], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -93,13 +95,14 @@ export const Scene7_SolutionReveal: React.FC = () => {
               fontSize: 26,
               fontWeight: 700,
               fontFamily: FONT,
-              color: C.blue,
+              color: C.text1,
             }}
           >
             The Augmented CFO
           </span>
         </div>
 
+        {/* Line 1 */}
         <div
           style={{
             opacity: l1Op,
@@ -107,27 +110,30 @@ export const Scene7_SolutionReveal: React.FC = () => {
             fontSize: 52,
             fontWeight: 800,
             fontFamily: FONT,
-            textAlign: "center",
-          }}
-        >
-          <span style={{ color: C.text2 }}>We build </span>
-          <span style={{ color: aiColor }}>AI automations</span>
-        </div>
-
-        <div
-          style={{
-            opacity: l2Op,
-            transform: `translateY(${l2Y}px)`,
-            fontSize: 52,
-            fontWeight: 800,
-            fontFamily: FONT,
             color: C.text1,
             textAlign: "center",
           }}
         >
+          We build <span style={{ color: aiColor }}>AI automations</span>{" "}
           directly into your finance stack.
         </div>
 
+        {/* Line 2 */}
+        <div
+          style={{
+            opacity: l2Op,
+            transform: `translateY(${l2Y}px)`,
+            fontSize: 40,
+            fontWeight: 600,
+            fontFamily: FONT,
+            color: "#CBD5E1",
+            textAlign: "center",
+          }}
+        >
+          So your team can focus on what actually matters.
+        </div>
+
+        {/* Line 3 */}
         <div
           style={{
             display: "flex",
@@ -138,7 +144,7 @@ export const Scene7_SolutionReveal: React.FC = () => {
           <span
             style={{
               opacity: p1Op,
-              fontSize: 36,
+              fontSize: 32,
               fontWeight: 500,
               fontFamily: FONT,
               color: "#CBD5E1",
@@ -149,7 +155,7 @@ export const Scene7_SolutionReveal: React.FC = () => {
           <span
             style={{
               opacity: p2Op,
-              fontSize: 36,
+              fontSize: 32,
               fontWeight: 500,
               fontFamily: FONT,
               color: "#CBD5E1",
@@ -160,7 +166,7 @@ export const Scene7_SolutionReveal: React.FC = () => {
           <span
             style={{
               opacity: p3Op,
-              fontSize: 36,
+              fontSize: 32,
               fontWeight: 500,
               fontFamily: FONT,
               color: "#CBD5E1",

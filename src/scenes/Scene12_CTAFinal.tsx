@@ -23,36 +23,40 @@ export const Scene12_CTAFinal: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Intro line — local 5
-  const introOp = interpolate(frame, [5, 18], [0, 1], {
+  // Question line — local 5
+  const questionOp = interpolate(frame, [5, 25], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const questionY = interpolate(frame, [5, 25], [16, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Line 1 — local 15
+  // Line 1 — local 35 (30 frames after question starts)
   const l1Scale = spring({
     fps,
-    frame: Math.max(0, frame - 15),
+    frame: Math.max(0, frame - 35),
     config: { stiffness: 160, damping: 16 },
   });
-  const l1Op = interpolate(frame, [15, 28], [0, 1], {
+  const l1Op = interpolate(frame, [35, 48], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Line 2 — local 45
+  // Line 2 — local 55
   const l2Scale = spring({
     fps,
-    frame: Math.max(0, frame - 45),
+    frame: Math.max(0, frame - 55),
     config: { stiffness: 160, damping: 16 },
   });
-  const l2Op = interpolate(frame, [45, 58], [0, 1], {
+  const l2Op = interpolate(frame, [55, 68], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Line 3 — local 75
-  const l3Op = interpolate(frame, [75, 90], [0, 1], {
+  // Line 3 — local 85
+  const l3Op = interpolate(frame, [85, 100], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -129,14 +133,15 @@ export const Scene12_CTAFinal: React.FC = () => {
         >
           <div
             style={{
-              opacity: introOp,
-              fontSize: 36,
-              fontWeight: 600,
+              opacity: questionOp,
+              transform: `translateY(${questionY}px)`,
+              fontSize: 42,
+              fontWeight: 700,
               fontFamily: FONT,
-              color: "#CBD5E1",
+              color: C.text1,
             }}
           >
-            See exactly how this applies to your team.
+            What would your team do with 20 extra hours every month?
           </div>
           <div
             style={{
@@ -157,7 +162,7 @@ export const Scene12_CTAFinal: React.FC = () => {
               fontSize: 80,
               fontWeight: 800,
               fontFamily: FONT,
-              color: C.blue,
+              color: C.green,
             }}
           >
             Every month.
@@ -194,14 +199,14 @@ export const Scene12_CTAFinal: React.FC = () => {
               opacity: btnOp,
               transform: `scale(${btnScale * pulse})`,
               backgroundColor: C.blue,
-              padding: "22px 56px",
+              padding: "26px 64px",
               borderRadius: 12,
               boxShadow: "0 0 40px rgba(37,99,235,0.40)",
             }}
           >
             <span
               style={{
-                fontSize: 26,
+                fontSize: 32,
                 fontWeight: 700,
                 fontFamily: FONT,
                 color: "#FFFFFF",

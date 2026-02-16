@@ -108,7 +108,7 @@ export const Scene2_PainQ1: React.FC = () => {
               display: "inline-block",
             }}
           >
-            on the close?
+            just to close the books?
           </span>
         </div>
       </div>
