@@ -130,10 +130,10 @@ export const Scene12_CTAFinal: React.FC = () => {
           <div
             style={{
               opacity: introOp,
-              fontSize: 28,
+              fontSize: 36,
               fontWeight: 600,
               fontFamily: FONT,
-              color: "#E2E8F0",
+              color: "#CBD5E1",
             }}
           >
             See exactly how this applies to your team.
@@ -142,7 +142,7 @@ export const Scene12_CTAFinal: React.FC = () => {
             style={{
               opacity: l1Op,
               transform: `scale(${l1Scale})`,
-              fontSize: 52,
+              fontSize: 80,
               fontWeight: 800,
               fontFamily: FONT,
               color: C.text1,
@@ -154,7 +154,7 @@ export const Scene12_CTAFinal: React.FC = () => {
             style={{
               opacity: l2Op,
               transform: `scale(${l2Scale})`,
-              fontSize: 52,
+              fontSize: 80,
               fontWeight: 800,
               fontFamily: FONT,
               color: C.blue,
@@ -165,10 +165,10 @@ export const Scene12_CTAFinal: React.FC = () => {
           <div
             style={{
               opacity: l3Op,
-              fontSize: 28,
+              fontSize: 36,
               fontWeight: 500,
               fontFamily: FONT,
-              color: "#E2E8F0",
+              color: "#CBD5E1",
               marginTop: 8,
             }}
           >
@@ -194,14 +194,14 @@ export const Scene12_CTAFinal: React.FC = () => {
               opacity: btnOp,
               transform: `scale(${btnScale * pulse})`,
               backgroundColor: C.blue,
-              padding: "18px 44px",
+              padding: "22px 56px",
               borderRadius: 12,
               boxShadow: "0 0 40px rgba(37,99,235,0.40)",
             }}
           >
             <span
               style={{
-                fontSize: 20,
+                fontSize: 26,
                 fontWeight: 700,
                 fontFamily: FONT,
                 color: "#FFFFFF",
@@ -214,10 +214,10 @@ export const Scene12_CTAFinal: React.FC = () => {
             style={{
               opacity: urlOp,
               transform: `translateY(${urlY}px)`,
-              fontSize: 18,
+              fontSize: 22,
               fontWeight: 400,
               fontFamily: FONT,
-              color: C.text2,
+              color: "#94A3B8",
             }}
           >
             Free · No commitment · 30-minute call

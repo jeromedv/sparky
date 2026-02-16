@@ -9,7 +9,9 @@ import {
 import { C, FONT, gridStyle } from "../styles";
 
 // Scene 8 — Before/After Metrics (duration 360 frames)
-// Uses absolute frame references within the scene's local timeline
+// Two-step reveal: Step 1 shows only the "before" value centered,
+// Step 2 reveals arrow, "after" value, and savings badge.
+//
 // Row 1: frames 40–139 (Monthly Close)
 // Row 2: frames 140–219 (Cash Flow Forecasting)
 // Row 3: frames 220–299 (Board Reporting)
@@ -73,13 +75,13 @@ const BeforeAfterRow: React.FC<{
     extrapolateRight: "clamp",
   });
 
-  // STEP 1: Show only the "before" value centered
+  // STEP 1: Before value fades in
   const beforeOp = interpolate(frame, [row.step1Start, row.step1Start + 15], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // STEP 2: Arrow draws, after value springs in, badge pops
+  // STEP 2: Arrow draws, after springs in, badge pops
   const inStep2 = frame >= row.step2Start;
 
   const arrowScaleX = interpolate(frame, [row.step2Start, row.step2Start + 20], [0, 1], {
@@ -133,8 +135,9 @@ const BeforeAfterRow: React.FC<{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          flex: "0 0 260px",
+          flex: inStep2 ? "0 0 260px" : "1 1 auto",
           opacity: beforeOp,
+          transition: "flex 0.3s ease",
         }}
       >
         <div
@@ -171,83 +174,87 @@ const BeforeAfterRow: React.FC<{
         </div>
       </div>
 
-      {/* Arrow + Badge center column */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          flex: "0 0 180px",
-          gap: 12,
-        }}
-      >
+      {/* Arrow + Badge center column — only rendered in step 2 */}
+      {inStep2 && (
         <div
           style={{
-            width: 120,
-            height: 3,
-            backgroundColor: "#CBD5E1",
-            transform: `scaleX(${arrowScaleX})`,
-            transformOrigin: "left",
-            borderRadius: 2,
-          }}
-        />
-        {/* Badge */}
-        <div
-          style={{
-            opacity: badgeOp,
-            transform: `scale(${badgeScale})`,
-            backgroundColor: "rgba(16,185,129,0.15)",
-            border: "1px solid rgba(16,185,129,0.40)",
-            borderRadius: 8,
-            padding: "8px 20px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            flex: "0 0 180px",
+            gap: 12,
           }}
         >
-          <span
+          <div
             style={{
-              fontSize: 26,
+              width: 120,
+              height: 3,
+              backgroundColor: "#CBD5E1",
+              transform: `scaleX(${arrowScaleX})`,
+              transformOrigin: "left",
+              borderRadius: 2,
+            }}
+          />
+          {/* Badge */}
+          <div
+            style={{
+              opacity: badgeOp,
+              transform: `scale(${badgeScale})`,
+              backgroundColor: "rgba(16,185,129,0.15)",
+              border: "1px solid rgba(16,185,129,0.40)",
+              borderRadius: 8,
+              padding: "8px 20px",
+            }}
+          >
+            <span
+              style={{
+                fontSize: 26,
+                fontWeight: 800,
+                fontFamily: FONT,
+                color: C.green,
+              }}
+            >
+              {row.badge}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* After side — only rendered in step 2 */}
+      {inStep2 && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            flex: "0 0 260px",
+            opacity: afterLabelOp,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: 600,
+              fontFamily: FONT,
+              color: "#94A3B8",
+              marginBottom: 4,
+            }}
+          >
+            AFTER
+          </div>
+          <div
+            style={{
+              fontSize: 80,
               fontWeight: 800,
               fontFamily: FONT,
               color: C.green,
+              transform: `scale(${afterScale})`,
             }}
           >
-            {row.badge}
-          </span>
+            {row.afterValue}
+          </div>
         </div>
-      </div>
-
-      {/* After side */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          flex: "0 0 260px",
-          opacity: afterLabelOp,
-        }}
-      >
-        <div
-          style={{
-            fontSize: 22,
-            fontWeight: 600,
-            fontFamily: FONT,
-            color: "#94A3B8",
-            marginBottom: 4,
-          }}
-        >
-          AFTER
-        </div>
-        <div
-          style={{
-            fontSize: 80,
-            fontWeight: 800,
-            fontFamily: FONT,
-            color: C.green,
-            transform: `scale(${inStep2 ? afterScale : 0})`,
-          }}
-        >
-          {row.afterValue}
-        </div>
-      </div>
+      )}
     </div>
   );
 };
