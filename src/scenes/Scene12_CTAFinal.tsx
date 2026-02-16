@@ -200,6 +200,7 @@ export const Scene12_CTAFinal: React.FC = () => {
             style={{
               opacity: btnOp,
               transform: `scale(${btnScale * pulse})`,
+              marginTop: 16,
               backgroundColor: C.blue,
               padding: "26px 64px",
               borderRadius: 12,
@@ -222,8 +223,8 @@ export const Scene12_CTAFinal: React.FC = () => {
           <div
             style={{
               opacity: reassureOp,
-              fontSize: 22,
-              fontWeight: 400,
+              fontSize: 26,
+              fontWeight: 500,
               fontFamily: FONT,
               color: "#94A3B8",
             }}

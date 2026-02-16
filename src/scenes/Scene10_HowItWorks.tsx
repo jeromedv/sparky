@@ -20,7 +20,12 @@ const steps: Step[] = [
   {
     num: "1",
     circleColor: C.blue,
-    title: "We map your highest-friction workflows",
+    title: (
+      <>
+        We map your{" "}
+        <span style={{ color: C.green }}>highest-friction</span> workflows
+      </>
+    ),
     subtitle: "A focused audit of your current finance processes",
     startFrame: 40,
   },
@@ -45,10 +50,9 @@ const steps: Step[] = [
     num: "3",
     circleColor: C.green,
     title: (
-      <>
-        First automation live by{" "}
-        <span style={{ color: C.green }}>Week 2</span>
-      </>
+      <span style={{ color: C.green }}>
+        First automation live by Week 2
+      </span>
     ),
     subtitle: "You own everything. Full documentation. No vendor lock-in.",
     startFrame: 210,

@@ -113,7 +113,7 @@ export const Scene9_HighValueWork: React.FC = () => {
         </div>
 
         {/* Cards */}
-        <div style={{ display: "flex", gap: 28, width: "100%", maxWidth: 1200 }}>
+        <div style={{ display: "flex", gap: 28, width: "100%", maxWidth: 1380 }}>
           {/* Card A — Automated away */}
           <div
             style={{
@@ -123,13 +123,13 @@ export const Scene9_HighValueWork: React.FC = () => {
               backgroundColor: "rgba(239,68,68,0.08)",
               border: "1px solid rgba(239,68,68,0.25)",
               borderRadius: 12,
-              padding: 40,
+              padding: 48,
               minHeight: 320,
             }}
           >
             <div
               style={{
-                fontSize: 38,
+                fontSize: 42,
                 fontWeight: 700,
                 fontFamily: FONT,
                 color: C.red,
@@ -154,7 +154,7 @@ export const Scene9_HighValueWork: React.FC = () => {
                   style={{
                     opacity: iOp,
                     transform: `translateX(${iX}px)`,
-                    fontSize: 32,
+                    fontSize: 36,
                     fontWeight: 500,
                     fontFamily: FONT,
                     color: "#CBD5E1",
@@ -177,13 +177,13 @@ export const Scene9_HighValueWork: React.FC = () => {
               backgroundColor: "rgba(16,185,129,0.08)",
               border: "1px solid rgba(16,185,129,0.25)",
               borderRadius: 12,
-              padding: 40,
+              padding: 48,
               minHeight: 320,
             }}
           >
             <div
               style={{
-                fontSize: 38,
+                fontSize: 42,
                 fontWeight: 700,
                 fontFamily: FONT,
                 color: C.green,
@@ -208,7 +208,7 @@ export const Scene9_HighValueWork: React.FC = () => {
                   style={{
                     opacity: iOp,
                     transform: `translateX(${iX}px)`,
-                    fontSize: 32,
+                    fontSize: 36,
                     fontWeight: 500,
                     fontFamily: FONT,
                     color: "#CBD5E1",

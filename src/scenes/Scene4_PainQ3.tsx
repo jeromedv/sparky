@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  useCurrentFrame,
-  useVideoConfig,
-  interpolate,
-  spring,
-} from "remotion";
+import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 import { C, FONT, gridStyle, glowRed } from "../styles";
 
 export const Scene4_PainQ3: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
 
   const l1Op = interpolate(frame, [10, 30], [0, 1], {
     extrapolateLeft: "clamp",
@@ -21,21 +14,11 @@ export const Scene4_PainQ3: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  const l2Op = interpolate(frame, [30, 50], [0, 1], {
+  const l2Op = interpolate(frame, [26, 46], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const l2Y = interpolate(frame, [30, 50], [20, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  const emojiScale = spring({
-    fps,
-    frame: Math.max(0, frame - 34),
-    config: { stiffness: 220, damping: 14 },
-  });
-  const emojiOp = interpolate(frame, [34, 40], [0, 1], {
+  const l2Y = interpolate(frame, [26, 46], [20, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -64,38 +47,25 @@ export const Scene4_PainQ3: React.FC = () => {
           style={{
             opacity: l1Op,
             transform: `translateY(${l1Y}px)`,
-            fontSize: 80,
+            fontSize: 58,
             fontWeight: 800,
             fontFamily: FONT,
             color: C.text1,
           }}
         >
-          Your board wants answers.
+          Spreadsheets are overflowing.
         </div>
         <div
           style={{
             opacity: l2Op,
             transform: `translateY(${l2Y}px)`,
-            fontSize: 80,
+            fontSize: 58,
             fontWeight: 800,
             fontFamily: FONT,
-            color: C.text1,
-            display: "flex",
-            alignItems: "center",
-            gap: 16,
+            color: "#4B5563",
           }}
         >
-          You have exports.
-          <span
-            style={{
-              opacity: emojiOp,
-              transform: `scale(${emojiScale})`,
-              display: "inline-block",
-              fontSize: 64,
-            }}
-          >
-            📊
-          </span>
+          Insights are nowhere.
         </div>
       </div>
     </AbsoluteFill>
