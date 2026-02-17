@@ -15,7 +15,7 @@ import { Scene11_Services } from "./scenes/Scene11_Services";
 import { Scene12_CTAFinal } from "./scenes/Scene12_CTAFinal";
 
 /**
- * ~84.5-second video (2535 frames @ 30fps) — Dark Premium
+ * ~83.8-second video (2513 frames @ 30fps) — Dark Premium
  *
  *  #  Scene                  Time        Frames       Duration
  *  1  Logo Intro             0:00–0:04   0–119        120 fr
@@ -25,11 +25,11 @@ import { Scene12_CTAFinal } from "./scenes/Scene12_CTAFinal";
  *  5  Pain Question 4        0:16–0:20   480–599      120 fr
  *  6  Diagnosis              0:20–0:25   600–749      150 fr
  *  7  Solution Reveal        0:25–0:31   750–929      180 fr
- *  8  Before/After Metrics   0:31–0:45   930–1364     435 fr
- *  9  High-Value Work        0:45–0:51   1365–1544    180 fr
- * 10  How It Works           0:51–1:00   1545–1814    270 fr
- * 11  Services               1:00–1:06   1815–1994    180 fr
- * 12  CTA Final              1:06–1:24   1995–2534    540 fr
+ *  8  Before/After Metrics   0:31–0:44   930–1342     413 fr
+ *  9  High-Value Work        0:44–0:50   1343–1522    180 fr
+ * 10  How It Works           0:50–0:59   1523–1792    270 fr
+ * 11  Services               0:59–1:05   1793–1972    180 fr
+ * 12  CTA Final              1:05–1:23   1973–2512    540 fr
  */
 export const AugmentedCFO: React.FC = () => {
   return (
@@ -76,31 +76,31 @@ export const AugmentedCFO: React.FC = () => {
         </SceneTransition>
       </Sequence>
 
-      <Sequence from={930} durationInFrames={435}>
-        <SceneTransition durationInFrames={435}>
+      <Sequence from={930} durationInFrames={413}>
+        <SceneTransition durationInFrames={413}>
           <Scene8_BeforeAfter />
         </SceneTransition>
       </Sequence>
 
-      <Sequence from={1365} durationInFrames={180}>
+      <Sequence from={1343} durationInFrames={180}>
         <SceneTransition durationInFrames={180}>
           <Scene9_HighValueWork />
         </SceneTransition>
       </Sequence>
 
-      <Sequence from={1545} durationInFrames={270}>
+      <Sequence from={1523} durationInFrames={270}>
         <SceneTransition durationInFrames={270}>
           <Scene10_HowItWorks />
         </SceneTransition>
       </Sequence>
 
-      <Sequence from={1815} durationInFrames={180}>
+      <Sequence from={1793} durationInFrames={180}>
         <SceneTransition durationInFrames={180}>
           <Scene11_Services />
         </SceneTransition>
       </Sequence>
 
-      <Sequence from={1995} durationInFrames={540}>
+      <Sequence from={1973} durationInFrames={540}>
         <SceneTransition durationInFrames={540}>
           <Scene12_CTAFinal />
         </SceneTransition>

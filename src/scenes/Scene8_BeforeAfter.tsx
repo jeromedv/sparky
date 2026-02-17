@@ -8,14 +8,14 @@ import {
 } from "remotion";
 import { C, FONT, gridStyle } from "../styles";
 
-// Scene 8 — Before/After Metrics (duration 435 frames)
+// Scene 8 — Before/After Metrics (duration 413 frames)
 // Two-step reveal: Step 1 shows only the "before" value centered,
 // Step 2 reveals arrow, "after" value, and savings badge.
 //
 // Row 1: frames 40–139 (Monthly Close)
 // Row 2: frames 140–219 (Cash Flow Forecasting)
 // Row 3: frames 220–299 (Board Reporting)
-// Summary bar: frames 300–434 (fully visible by 338, holds ~82 frames before exit)
+// Summary bar: frames 300–412 (fully visible by 338, holds 60 frames before exit)
 
 interface RowConfig {
   label: string;
