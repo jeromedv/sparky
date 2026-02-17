@@ -71,13 +71,13 @@ export const AugmentedCFO: React.FC = () => {
       </Sequence>
 
       <Sequence from={750} durationInFrames={180}>
-        <SceneTransition durationInFrames={180} exitFrames={8}>
+        <SceneTransition durationInFrames={180} exitFrames={4}>
           <Scene7_SolutionReveal />
         </SceneTransition>
       </Sequence>
 
       <Sequence from={930} durationInFrames={413}>
-        <SceneTransition durationInFrames={413} enterFrames={8}>
+        <SceneTransition durationInFrames={413} enterFrames={4}>
           <Scene8_BeforeAfter />
         </SceneTransition>
       </Sequence>
