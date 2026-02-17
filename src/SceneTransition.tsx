@@ -9,21 +9,23 @@ import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 export const SceneTransition: React.FC<{
   children: React.ReactNode;
   durationInFrames: number;
-}> = ({ children, durationInFrames }) => {
+  enterFrames?: number;
+  exitFrames?: number;
+}> = ({ children, durationInFrames, enterFrames = 20, exitFrames = 15 }) => {
   const frame = useCurrentFrame();
 
-  // Enter: first 20 frames
-  const enterOpacity = interpolate(frame, [0, 20], [0, 1], {
+  // Enter
+  const enterOpacity = interpolate(frame, [0, enterFrames], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const enterX = interpolate(frame, [0, 20], [30, 0], {
+  const enterX = interpolate(frame, [0, enterFrames], [30, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Exit: last 15 frames
-  const exitStart = durationInFrames - 15;
+  // Exit
+  const exitStart = durationInFrames - exitFrames;
   const exitOpacity = interpolate(frame, [exitStart, durationInFrames], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -34,7 +36,7 @@ export const SceneTransition: React.FC<{
   });
 
   const opacity = Math.min(enterOpacity, exitOpacity);
-  const translateX = frame <= 20 ? enterX : frame >= exitStart ? exitX : 0;
+  const translateX = frame <= enterFrames ? enterX : frame >= exitStart ? exitX : 0;
 
   return (
     <AbsoluteFill

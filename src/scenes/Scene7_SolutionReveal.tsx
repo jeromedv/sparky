@@ -86,13 +86,13 @@ export const Scene7_SolutionReveal: React.FC = () => {
             border: "1px solid rgba(37,99,235,0.6)",
             backgroundColor: "rgba(37,99,235,0.10)",
             borderRadius: 30,
-            padding: "10px 28px",
+            padding: "10px 24px",
             marginBottom: 20,
           }}
         >
           <span
             style={{
-              fontSize: 26,
+              fontSize: 32,
               fontWeight: 700,
               fontFamily: FONT,
               color: C.text1,
