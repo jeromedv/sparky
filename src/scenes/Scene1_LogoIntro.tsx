@@ -13,7 +13,7 @@ export const Scene1_LogoIntro: React.FC = () => {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const lineWidth = interpolate(frame, [20, 45], [0, 320], {
+  const lineWidth = interpolate(frame, [20, 50], [0, 320], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });

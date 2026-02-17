@@ -8,10 +8,10 @@ import {
 } from "remotion";
 import { C, FONT, gridStyle, glowBlueCTA } from "../styles";
 
-// Scene 12 — CTA Final (duration 254 frames)
+// Scene 12 — CTA Final (duration 540 frames)
 // Phase 1 — Impact recap: local 0–100
-// Phase 2 — Question + CTA: local 100–200
-// Phase 3 — Outro: local 200–254
+// Phase 2 — Question + CTA: local 95–462
+// Phase 3 — Outro: local 458–540
 
 export const Scene12_CTAFinal: React.FC = () => {
   const frame = useCurrentFrame();
@@ -51,64 +51,64 @@ export const Scene12_CTAFinal: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // ========== PHASE 2: Question + CTA (100–200) ==========
+  // ========== PHASE 2: Question + CTA (95–462) ==========
   const phase2In = interpolate(frame, [96, 103], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const phase2Out = interpolate(frame, [185, 200], [1, 0], {
+  const phase2Out = interpolate(frame, [440, 460], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const phase2Op = Math.min(phase2In, phase2Out);
 
-  // Step 1: Question — frame 100
-  const questionOp = interpolate(frame, [100, 120], [0, 1], {
+  // Step 1: Question — frame 105
+  const questionOp = interpolate(frame, [105, 125], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const questionY = interpolate(frame, [100, 120], [16, 0], {
+  const questionY = interpolate(frame, [105, 125], [16, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Step 2: CTA button — frame 145 (25 frames after question starts)
+  // Step 2: CTA button — frame 184
   const btnScale = spring({
     fps,
-    frame: Math.max(0, frame - 145),
+    frame: Math.max(0, frame - 184),
     config: { stiffness: 200, damping: 14 },
   });
-  const btnOp = interpolate(frame, [145, 160], [0, 1], {
+  const btnOp = interpolate(frame, [184, 199], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
   const pulse =
-    frame > 165 ? 1 + 0.018 * Math.sin((frame - 165) / 9) : 1;
+    frame > 204 ? 1 + 0.018 * Math.sin((frame - 204) / 9) : 1;
 
-  // Step 3: Reassurance — frame 160 (15 frames after button)
-  const reassureOp = interpolate(frame, [160, 175], [0, 1], {
+  // Step 3: Reassurance — frame 214
+  const reassureOp = interpolate(frame, [214, 229], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // ========== PHASE 3: Outro (200–254) ==========
-  const outroOp = interpolate(frame, [200, 220], [0, 1], {
+  // ========== PHASE 3: Outro (458–540) ==========
+  const outroOp = interpolate(frame, [460, 480], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const outroScale = spring({
     fps,
-    frame: Math.max(0, frame - 200),
+    frame: Math.max(0, frame - 460),
     config: { stiffness: 160, damping: 16 },
   });
-  const outroLineW = interpolate(frame, [210, 235], [0, 240], {
+  const outroLineW = interpolate(frame, [470, 495], [0, 240], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
   // Fade to black
-  const fadeBlack = interpolate(frame, [224, 254], [0, 1], {
+  const fadeBlack = interpolate(frame, [520, 540], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -169,7 +169,7 @@ export const Scene12_CTAFinal: React.FC = () => {
       )}
 
       {/* PHASE 2 — Question + CTA */}
-      {frame >= 95 && frame < 202 && (
+      {frame >= 95 && frame < 462 && (
         <AbsoluteFill
           style={{
             display: "flex",
@@ -235,7 +235,7 @@ export const Scene12_CTAFinal: React.FC = () => {
       )}
 
       {/* PHASE 3 — Outro */}
-      {frame >= 198 && (
+      {frame >= 458 && (
         <AbsoluteFill
           style={{
             display: "flex",
