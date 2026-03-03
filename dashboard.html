@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Fitness — Campaign Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  /* ── Reset & Base ─────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:        #0f1117;
+    --surface:   #181b23;
+    --border:    #262a36;
+    --text:      #e4e6ed;
+    --muted:     #8b8fa3;
+    --accent:    #6c5ce7;
+    --accent-lt: #a29bfe;
+    --green:     #00cec9;
+    --green-dk:  #00b4ab;
+    --red:       #ff7675;
+    --gold:      #fdcb6e;
+    --blue:      #74b9ff;
+    --radius:    10px;
+  }
+  html { font-size: 15px; }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-lt); text-decoration: none; }
+
+  /* ── Layout ───────────────────────────────────────────────────── */
+  .wrapper { max-width: 1180px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  /* ── Header ───────────────────────────────────────────────────── */
+  header {
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    justify-content: space-between; gap: .75rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem; margin-bottom: 2rem;
+  }
+  header h1 { font-size: 1.65rem; font-weight: 700; letter-spacing: -.03em; }
+  header h1 span { color: var(--green); }
+  .header-meta { display: flex; flex-wrap: wrap; gap: .35rem 1.2rem; color: var(--muted); font-size: .82rem; }
+  .header-meta strong { color: var(--text); font-weight: 600; }
+
+  /* ── KPI Cards ────────────────────────────────────────────────── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.25rem;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.15rem;
+    display: flex; flex-direction: column; gap: .3rem;
+  }
+  .kpi-card .label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+  .kpi-card .value { font-size: 1.55rem; font-weight: 700; letter-spacing: -.02em; }
+  .kpi-card .sub { font-size: .75rem; color: var(--muted); }
+  .kpi-card:nth-child(1) .value { color: var(--gold); }
+  .kpi-card:nth-child(2) .value { color: var(--green); }
+  .kpi-card:nth-child(3) .value { color: var(--blue); }
+  .kpi-card:nth-child(4) .value { color: var(--accent-lt); }
+  .kpi-card:nth-child(5) .value { color: var(--green); }
+
+  /* ── Section Titles ───────────────────────────────────────────── */
+  .section-title {
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem;
+    padding-left: .15rem; letter-spacing: -.01em;
+  }
+
+  /* ── Chart Panels ─────────────────────────────────────────────── */
+  .charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2.25rem;
+  }
+  .chart-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+  }
+  .chart-panel h3 {
+    font-size: .85rem; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .06em;
+    margin-bottom: 1.1rem;
+  }
+
+  /* ── CSS Bar Chart ────────────────────────────────────────────── */
+  .bar-chart { display: flex; flex-direction: column; gap: .65rem; }
+  .bar-row { display: flex; flex-direction: column; gap: .3rem; }
+  .bar-row .bar-label {
+    font-size: .72rem; color: var(--muted); font-weight: 500;
+    display: flex; justify-content: space-between;
+  }
+  .bar-track {
+    position: relative; height: 22px; border-radius: 4px;
+    background: rgba(255,255,255,.04); overflow: hidden;
+  }
+  .bar-fill {
+    position: absolute; top: 0; left: 0; height: 100%;
+    border-radius: 4px; transition: width .4s ease;
+  }
+  .bar-fill.spend  { background: linear-gradient(90deg, #6c5ce7, #a29bfe); z-index: 2; }
+  .bar-fill.revenue { background: linear-gradient(90deg, #00b4ab, #00cec9); z-index: 1; }
+  .bar-legend {
+    display: flex; gap: 1.2rem; margin-bottom: .8rem; font-size: .72rem; color: var(--muted);
+  }
+  .bar-legend i {
+    display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+    margin-right: .35rem; vertical-align: middle;
+  }
+  .bar-legend i.spend-swatch  { background: var(--accent-lt); }
+  .bar-legend i.rev-swatch    { background: var(--green); }
+
+  /* ── Table ────────────────────────────────────────────────────── */
+  .table-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    overflow-x: auto;
+  }
+  .table-panel h3 {
+    font-size: .85rem; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .06em;
+    margin-bottom: 1rem;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  thead th {
+    text-align: left; padding: .6rem .75rem;
+    font-size: .72rem; text-transform: uppercase; letter-spacing: .07em;
+    color: var(--muted); font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td {
+    padding: .7rem .75rem; border-bottom: 1px solid var(--border);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,.025); }
+  .badge {
+    display: inline-block; padding: .15rem .55rem;
+    border-radius: 4px; font-size: .74rem; font-weight: 600;
+  }
+  .badge-green { background: rgba(0,206,201,.12); color: var(--green); }
+  .badge-gold  { background: rgba(253,203,110,.12); color: var(--gold); }
+  .badge-blue  { background: rgba(116,185,255,.12); color: var(--blue); }
+
+  /* ── Footer ───────────────────────────────────────────────────── */
+  footer {
+    text-align: center; padding-top: 2.5rem;
+    font-size: .75rem; color: var(--muted);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .charts-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    html { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <header>
+    <h1><span>Fresh Fitness</span> — Campaign Dashboard</h1>
+    <div class="header-meta">
+      <span>Platform: <strong>Facebook Ads</strong></span>
+      <span>Period: <strong>Jan 1 – <span id="hdr-date"></span></strong></span>
+      <span>Report generated: <strong id="hdr-today"></strong></span>
+    </div>
+  </header>
+
+  <!-- KPIs -->
+  <div class="kpi-grid" id="kpi-grid"></div>
+
+  <!-- Charts -->
+  <div class="charts-row">
+    <div class="chart-panel">
+      <h3>Weekly Lead Volume</h3>
+      <canvas id="leadChart"></canvas>
+    </div>
+    <div class="chart-panel">
+      <h3>Spend vs Revenue by Week</h3>
+      <div class="bar-legend">
+        <span><i class="spend-swatch"></i>Ad Spend</span>
+        <span><i class="rev-swatch"></i>Revenue</span>
+      </div>
+      <div class="bar-chart" id="barChart"></div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-panel">
+    <h3>Top 5 Ad Creatives</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Creative Name</th>
+          <th>Impressions</th>
+          <th>Clicks</th>
+          <th>CTR</th>
+          <th>CPC</th>
+          <th>Conversions</th>
+        </tr>
+      </thead>
+      <tbody id="creatives-body"></tbody>
+    </table>
+  </div>
+
+  <footer>Fresh Fitness &middot; Facebook Ads Campaign Report &middot; Confidential</footer>
+</div>
+
+<script>
+/* ================================================================
+   MOCK DATA GENERATOR
+   ================================================================ */
+(function () {
+  "use strict";
+
+  // Deterministic seeded random for reproducible data
+  let _seed = 20260101;
+  function seededRandom() {
+    _seed = (_seed * 16807 + 0) % 2147483647;
+    return (_seed - 1) / 2147483646;
+  }
+  function rand(min, max) { return min + seededRandom() * (max - min); }
+  function randInt(min, max) { return Math.round(rand(min, max)); }
+
+  // ── Dates ──────────────────────────────────────────────────────
+  const today = new Date();
+  const campaignStart = new Date(2026, 0, 1); // Jan 1 2026
+
+  function fmtDate(d) {
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
+  function fmtShort(d) {
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  }
+
+  document.getElementById("hdr-date").textContent = fmtDate(today);
+  document.getElementById("hdr-today").textContent = fmtDate(today);
+
+  // ── Generate weekly data ───────────────────────────────────────
+  const weeks = [];
+  let cursor = new Date(campaignStart);
+
+  while (cursor < today) {
+    const weekEnd = new Date(cursor);
+    weekEnd.setDate(weekEnd.getDate() + 6);
+    const end = weekEnd > today ? today : weekEnd;
+
+    const daysInWeek = Math.round((end - cursor) / 86400000) + 1;
+    const fraction = daysInWeek / 7; // scale partial weeks
+
+    const spend       = Math.round(rand(800, 2500) * fraction);
+    const impressions = randInt(18000, 65000) * fraction | 0;
+    const clicks      = randInt(Math.round(impressions * 0.008), Math.round(impressions * 0.035));
+    const leads       = Math.max(1, Math.round(rand(15, 60) * fraction));
+    const revenueMultiplier = rand(1.5, 3.5);
+    const revenue     = Math.round(spend * revenueMultiplier);
+    const conversions = Math.max(1, Math.round(leads * rand(0.25, 0.55)));
+
+    weeks.push({
+      label: fmtShort(cursor) + " – " + fmtShort(end),
+      shortLabel: fmtShort(cursor),
+      spend, impressions, clicks, leads, revenue, conversions
+    });
+
+    cursor = new Date(cursor);
+    cursor.setDate(cursor.getDate() + 7);
+  }
+
+  // ── Aggregate KPIs ─────────────────────────────────────────────
+  const totals = weeks.reduce((a, w) => {
+    a.spend       += w.spend;
+    a.leads       += w.leads;
+    a.revenue     += w.revenue;
+    a.impressions += w.impressions;
+    a.clicks      += w.clicks;
+    a.conversions += w.conversions;
+    return a;
+  }, { spend: 0, leads: 0, revenue: 0, impressions: 0, clicks: 0, conversions: 0 });
+
+  const cpl            = totals.spend / totals.leads;
+  const conversionRate = (totals.conversions / totals.clicks) * 100;
+  const roas           = totals.revenue / totals.spend;
+
+  function $(n) { return n.toLocaleString("en-US"); }
+
+  const kpiData = [
+    { label: "Total Ad Spend",   value: "$" + $(totals.spend),            sub: weeks.length + " weeks" },
+    { label: "Leads Generated",  value: $(totals.leads),                  sub: "~" + Math.round(totals.leads / weeks.length) + " / week" },
+    { label: "Cost Per Lead",    value: "$" + cpl.toFixed(2),             sub: "Target < $45" },
+    { label: "Conversion Rate",  value: conversionRate.toFixed(1) + "%",  sub: $(totals.conversions) + " conversions" },
+    { label: "ROAS",             value: roas.toFixed(2) + "x",           sub: "$" + $(totals.revenue) + " revenue" },
+  ];
+
+  const grid = document.getElementById("kpi-grid");
+  kpiData.forEach(k => {
+    grid.innerHTML += `
+      <div class="kpi-card">
+        <span class="label">${k.label}</span>
+        <span class="value">${k.value}</span>
+        <span class="sub">${k.sub}</span>
+      </div>`;
+  });
+
+  // ── Chart.js Line Chart — Weekly Leads ─────────────────────────
+  const ctx = document.getElementById("leadChart").getContext("2d");
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: weeks.map(w => w.shortLabel),
+      datasets: [{
+        label: "Leads",
+        data: weeks.map(w => w.leads),
+        borderColor: "#00cec9",
+        backgroundColor: "rgba(0,206,201,.12)",
+        pointBackgroundColor: "#00cec9",
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        tension: .35,
+        fill: true,
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: "#181b23",
+          titleColor: "#e4e6ed",
+          bodyColor: "#e4e6ed",
+          borderColor: "#262a36",
+          borderWidth: 1,
+          padding: 10,
+          cornerRadius: 6,
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: "#8b8fa3", font: { size: 11 } },
+          grid:  { color: "rgba(255,255,255,.04)" },
+        },
+        y: {
+          beginAtZero: true,
+          ticks: { color: "#8b8fa3", font: { size: 11 } },
+          grid:  { color: "rgba(255,255,255,.06)" },
+        }
+      }
+    }
+  });
+
+  // ── CSS Bar Chart — Spend vs Revenue ───────────────────────────
+  const maxRev = Math.max(...weeks.map(w => w.revenue));
+  const barContainer = document.getElementById("barChart");
+
+  weeks.forEach(w => {
+    const spendPct  = (w.spend   / maxRev * 100).toFixed(1);
+    const revPct    = (w.revenue / maxRev * 100).toFixed(1);
+    barContainer.innerHTML += `
+      <div class="bar-row">
+        <div class="bar-label">
+          <span>${w.shortLabel}</span>
+          <span>$${$(w.spend)} / $${$(w.revenue)}</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill revenue" style="width:${revPct}%"></div>
+          <div class="bar-fill spend"   style="width:${spendPct}%"></div>
+        </div>
+      </div>`;
+  });
+
+  // ── Creatives Table ────────────────────────────────────────────
+  const creatives = [
+    { name: "New Year Resolution Special",  ctr: 3.24, cpc: 1.35, badge: "green" },
+    { name: "Free Trial Week",              ctr: 2.87, cpc: 1.62, badge: "green" },
+    { name: "Personal Training Promo",      ctr: 2.10, cpc: 2.48, badge: "gold" },
+    { name: "Student Discount Campaign",    ctr: 1.55, cpc: 3.15, badge: "blue" },
+    { name: "Spring Into Fitness",          ctr: 0.92, cpc: 4.52, badge: "blue" },
+  ];
+
+  const tbody = document.getElementById("creatives-body");
+  creatives.forEach((c, i) => {
+    // derive impressions / clicks / conversions from CTR & CPC
+    const impressions = randInt(40000, 120000);
+    const clicks      = Math.round(impressions * c.ctr / 100);
+    const conversions = Math.max(1, Math.round(clicks * rand(0.04, 0.12)));
+    tbody.innerHTML += `
+      <tr>
+        <td style="color:var(--muted)">${i + 1}</td>
+        <td><strong>${c.name}</strong></td>
+        <td>${$(impressions)}</td>
+        <td>${$(clicks)}</td>
+        <td><span class="badge badge-${c.badge}">${c.ctr.toFixed(2)}%</span></td>
+        <td>$${c.cpc.toFixed(2)}</td>
+        <td>${$(conversions)}</td>
+      </tr>`;
+  });
+
+})();
+</script>
+</body>
+</html>
