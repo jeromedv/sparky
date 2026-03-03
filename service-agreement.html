@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Service Agreement — RunWave.ai &amp; JayCampbell.com</title>
+<style>
+  /* ── Reset & Base ─────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --text:       #1a1a2e;
+    --text-mid:   #3a3a52;
+    --text-light: #6b6b82;
+    --bg:         #ffffff;
+    --bg-alt:     #f7f8fa;
+    --border:     #e2e4ea;
+    --accent:     #2d5bff;
+    --accent-dk:  #1a3fd4;
+    --radius:     6px;
+  }
+  html { font-size: 15px; }
+  body {
+    font-family: "Georgia", "Times New Roman", serif;
+    background: #eef0f4;
+    color: var(--text);
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Page Container (print-optimized) ─────────────────────────── */
+  .page {
+    max-width: 820px;
+    margin: 2.5rem auto;
+    background: var(--bg);
+    padding: 3.5rem 3.5rem 3rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.08);
+  }
+
+  /* ── Header ───────────────────────────────────────────────────── */
+  .doc-header {
+    text-align: center;
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .doc-header .brand {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: var(--accent);
+    margin-bottom: .2rem;
+  }
+  .doc-header h1 {
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-top: .6rem;
+  }
+  .doc-header .doc-date {
+    font-size: .85rem;
+    color: var(--text-light);
+    margin-top: .35rem;
+    font-style: italic;
+  }
+
+  /* ── Parties Block ────────────────────────────────────────────── */
+  .parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.3rem 1.5rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .parties .party-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-light);
+    font-weight: 700;
+    margin-bottom: .3rem;
+  }
+  .parties .party-name {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .parties .party-detail {
+    font-size: .88rem;
+    color: var(--text-mid);
+  }
+
+  /* ── Preamble ─────────────────────────────────────────────────── */
+  .preamble {
+    font-size: .92rem;
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  /* ── Sections ─────────────────────────────────────────────────── */
+  .section {
+    margin-bottom: 1.8rem;
+    page-break-inside: avoid;
+  }
+  .section-number {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: .15rem;
+  }
+  .section h2 {
+    font-size: 1.08rem;
+    font-weight: 700;
+    margin-bottom: .6rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .4rem;
+  }
+  .section p, .section li {
+    font-size: .92rem;
+    color: var(--text-mid);
+    margin-bottom: .45rem;
+  }
+  .section ul, .section ol {
+    padding-left: 1.4rem;
+    margin-bottom: .6rem;
+  }
+  .section li { margin-bottom: .35rem; }
+  .section .sub {
+    font-weight: 700;
+    color: var(--text);
+    margin-top: .8rem;
+    margin-bottom: .3rem;
+    font-size: .92rem;
+  }
+
+  /* ── Payment Table ────────────────────────────────────────────── */
+  .pay-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .88rem;
+    margin: .8rem 0;
+  }
+  .pay-table th, .pay-table td {
+    text-align: left;
+    padding: .55rem .75rem;
+    border: 1px solid var(--border);
+  }
+  .pay-table th {
+    background: var(--bg-alt);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--text-light);
+    font-weight: 700;
+  }
+  .pay-table td { color: var(--text-mid); }
+  .pay-table .total-row td {
+    font-weight: 700;
+    color: var(--text);
+    background: var(--bg-alt);
+  }
+
+  /* ── Signature Block ──────────────────────────────────────────── */
+  .signatures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--text);
+  }
+  .sig-block .sig-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-light);
+    font-weight: 700;
+    margin-bottom: .2rem;
+  }
+  .sig-block .sig-name {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .sig-block .sig-line {
+    border-bottom: 1px solid var(--text);
+    height: 2.8rem;
+    margin: 1.2rem 0 .4rem;
+  }
+  .sig-block .sig-field-label {
+    font-size: .78rem;
+    color: var(--text-light);
+  }
+  .sig-block .sig-date {
+    border-bottom: 1px solid var(--text);
+    height: 1.8rem;
+    margin: .8rem 0 .4rem;
+    width: 60%;
+  }
+
+  /* ── Footer ───────────────────────────────────────────────────── */
+  .doc-footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: .75rem;
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  /* ── Print Styles ─────────────────────────────────────────────── */
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; padding: 2rem 2.5rem; max-width: 100%; }
+    .section { page-break-inside: avoid; }
+    .signatures { page-break-inside: avoid; }
+  }
+
+  /* ── Responsive ───────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .page { padding: 2rem 1.5rem; margin: 1rem; }
+    .parties { grid-template-columns: 1fr; }
+    .signatures { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="doc-header">
+    <div class="brand">RunWave.ai</div>
+    <h1>Professional Service Agreement</h1>
+    <div class="doc-date">Effective Date: <script>document.write(new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"}))</script></div>
+  </div>
+
+  <!-- Parties -->
+  <div class="parties">
+    <div>
+      <div class="party-label">Service Provider</div>
+      <div class="party-name">RunWave.ai</div>
+      <div class="party-detail">AI Automation &amp; Workflow Building Services</div>
+      <div class="party-detail">Hereinafter referred to as "Provider"</div>
+    </div>
+    <div>
+      <div class="party-label">Client</div>
+      <div class="party-name">Jay Campbell</div>
+      <div class="party-detail">JayCampbell.com</div>
+      <div class="party-detail">Hereinafter referred to as "Client"</div>
+    </div>
+  </div>
+
+  <!-- Preamble -->
+  <p class="preamble">
+    This Professional Service Agreement ("Agreement") is entered into as of the effective date stated above, by and between RunWave.ai ("Provider") and Jay Campbell, operating as JayCampbell.com ("Client"). Both parties agree to the terms and conditions set forth herein for the provision of AI automation and workflow building services as described below.
+  </p>
+
+  <!-- Section 1: Scope of Work -->
+  <div class="section">
+    <div class="section-number">Section 1</div>
+    <h2>Scope of Work</h2>
+    <p>Provider agrees to deliver the following services to Client during the term of this Agreement:</p>
+
+    <p class="sub">1.1 AI-Powered Lead Capture &amp; Nurture Automation</p>
+    <ul>
+      <li>Design and implement intelligent lead capture forms and landing page integrations</li>
+      <li>Build automated nurture sequences with behavioral triggers and segmentation</li>
+      <li>Configure lead scoring models to prioritize high-intent prospects</li>
+      <li>Set up multi-channel follow-up workflows (email, SMS where applicable)</li>
+    </ul>
+
+    <p class="sub">1.2 N8N Workflow Builds for Content Repurposing Pipeline</p>
+    <ul>
+      <li>Architect and deploy N8N automation workflows for content repurposing</li>
+      <li>Automate content transformation across formats (long-form to social, video to text, etc.)</li>
+      <li>Integrate with Client's existing content platforms and distribution channels</li>
+      <li>Provide workflow documentation and operational guides</li>
+    </ul>
+
+    <p class="sub">1.3 CRM Integration &amp; Automated Follow-Up Sequences</p>
+    <ul>
+      <li>Integrate Client's CRM system with lead capture and automation platforms</li>
+      <li>Build automated follow-up sequences triggered by prospect actions and lifecycle stages</li>
+      <li>Configure deal pipeline automation and task assignment rules</li>
+      <li>Ensure data synchronization and integrity across all connected systems</li>
+    </ul>
+
+    <p class="sub">1.4 Landing Page Optimization with Conversion Tracking</p>
+    <ul>
+      <li>Audit and optimize existing landing pages for conversion performance</li>
+      <li>Implement conversion tracking pixels and event-based analytics</li>
+      <li>Set up A/B testing frameworks for ongoing optimization</li>
+      <li>Deliver monthly conversion performance reports with actionable recommendations</li>
+    </ul>
+
+    <p class="sub">1.5 Monthly Strategy Calls &amp; Workflow Maintenance</p>
+    <ul>
+      <li>One (1) scheduled strategy call per month to review performance and plan next steps</li>
+      <li>Ongoing maintenance of all deployed workflows and automations</li>
+      <li>Bug fixes and adjustments within 48 business hours of reported issues</li>
+      <li>Quarterly roadmap reviews to align services with Client's evolving business goals</li>
+    </ul>
+  </div>
+
+  <!-- Section 2: Deliverables -->
+  <div class="section">
+    <div class="section-number">Section 2</div>
+    <h2>Deliverables &amp; Timeline</h2>
+    <p>Provider shall deliver the following within the specified timeframes from the Agreement effective date:</p>
+    <ol>
+      <li><strong>Weeks 1–2:</strong> Discovery, systems audit, and project roadmap delivery</li>
+      <li><strong>Weeks 3–4:</strong> CRM integration, lead capture setup, and initial workflow deployment</li>
+      <li><strong>Weeks 5–6:</strong> N8N content repurposing pipeline build and testing</li>
+      <li><strong>Weeks 7–8:</strong> Landing page optimization, conversion tracking implementation, and nurture sequence launch</li>
+      <li><strong>Months 3–6:</strong> Ongoing optimization, maintenance, monthly strategy calls, and iterative improvements based on performance data</li>
+    </ol>
+  </div>
+
+  <!-- Section 3: Payment Terms -->
+  <div class="section">
+    <div class="section-number">Section 3</div>
+    <h2>Payment Terms &amp; Schedule</h2>
+
+    <table class="pay-table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monthly Service Retainer</td>
+          <td>$3,500.00</td>
+          <td>Monthly (due on the 1st)</td>
+        </tr>
+        <tr>
+          <td>Contract Duration</td>
+          <td colspan="2">6 months from effective date</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total Contract Value</td>
+          <td>$21,000.00</td>
+          <td>Over 6 months</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="sub">3.1 Payment Terms</p>
+    <ul>
+      <li>Payment is due on the first (1st) of each month, beginning on the effective date</li>
+      <li>All payments shall be made via bank transfer, ACH, or mutually agreed electronic payment method</li>
+      <li>Late payments are subject to a 1.5% monthly interest charge on the outstanding balance</li>
+      <li>Provider reserves the right to suspend services if payment is more than fifteen (15) days overdue</li>
+    </ul>
+  </div>
+
+  <!-- Section 4: Term & Termination -->
+  <div class="section">
+    <div class="section-number">Section 4</div>
+    <h2>Term &amp; Termination</h2>
+
+    <p class="sub">4.1 Term</p>
+    <p>This Agreement shall commence on the effective date and continue for a period of six (6) months, unless terminated earlier in accordance with this section.</p>
+
+    <p class="sub">4.2 Termination for Convenience</p>
+    <p>Either party may terminate this Agreement with thirty (30) days' written notice. In the event of early termination by Client, Client shall pay for all services rendered through the termination date plus any non-recoverable costs incurred by Provider.</p>
+
+    <p class="sub">4.3 Termination for Cause</p>
+    <p>Either party may terminate this Agreement immediately upon written notice if the other party materially breaches any term of this Agreement and fails to cure such breach within fifteen (15) days of receiving written notice of the breach.</p>
+
+    <p class="sub">4.4 Effect of Termination</p>
+    <p>Upon termination, Provider shall deliver all completed work product to Client, and Client shall pay all amounts due for services rendered through the effective termination date. Sections 5, 6, and 7 shall survive termination.</p>
+  </div>
+
+  <!-- Section 5: Confidentiality -->
+  <div class="section">
+    <div class="section-number">Section 5</div>
+    <h2>Confidentiality</h2>
+
+    <p class="sub">5.1 Definition</p>
+    <p>"Confidential Information" means any non-public information disclosed by either party to the other, including but not limited to business strategies, customer data, financial information, proprietary processes, login credentials, analytics data, and technical specifications.</p>
+
+    <p class="sub">5.2 Obligations</p>
+    <p>Each party agrees to: (a) hold Confidential Information in strict confidence; (b) not disclose Confidential Information to any third party without prior written consent; (c) use Confidential Information solely for the purposes of fulfilling obligations under this Agreement; and (d) take reasonable measures to protect the confidentiality of such information, no less protective than measures used to protect its own confidential information.</p>
+
+    <p class="sub">5.3 Duration</p>
+    <p>Confidentiality obligations shall survive termination of this Agreement and remain in effect for a period of two (2) years following termination.</p>
+  </div>
+
+  <!-- Section 6: Intellectual Property -->
+  <div class="section">
+    <div class="section-number">Section 6</div>
+    <h2>Intellectual Property Ownership</h2>
+
+    <p class="sub">6.1 Client Work Product</p>
+    <p>Upon full payment of all fees due, all custom workflows, automations, landing page modifications, and deliverables created specifically for Client under this Agreement ("Client Work Product") shall be owned by Client.</p>
+
+    <p class="sub">6.2 Provider Tools &amp; Frameworks</p>
+    <p>Provider retains all rights to pre-existing tools, templates, frameworks, and methodologies used in the delivery of services ("Provider IP"). Client is granted a non-exclusive, perpetual license to use any Provider IP incorporated into the Client Work Product for Client's internal business purposes.</p>
+
+    <p class="sub">6.3 Portfolio Rights</p>
+    <p>Provider may reference the general nature of work performed (without disclosing Confidential Information) in its portfolio, case studies, and marketing materials, unless Client provides written objection within fourteen (14) days of this Agreement's effective date.</p>
+  </div>
+
+  <!-- Section 7: Limitation of Liability -->
+  <div class="section">
+    <div class="section-number">Section 7</div>
+    <h2>Limitation of Liability</h2>
+
+    <p class="sub">7.1 Limitation</p>
+    <p>To the maximum extent permitted by applicable law, neither party shall be liable to the other for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of revenue, loss of profits, loss of data, or business interruption, arising out of or related to this Agreement, regardless of the theory of liability.</p>
+
+    <p class="sub">7.2 Cap on Liability</p>
+    <p>Provider's total aggregate liability under this Agreement shall not exceed the total fees actually paid by Client to Provider during the six (6) months immediately preceding the event giving rise to the claim.</p>
+
+    <p class="sub">7.3 Exclusions</p>
+    <p>The limitations set forth in this section shall not apply to: (a) breaches of confidentiality obligations; (b) willful misconduct or gross negligence; or (c) indemnification obligations arising from third-party intellectual property infringement claims.</p>
+  </div>
+
+  <!-- Section 8: General Provisions -->
+  <div class="section">
+    <div class="section-number">Section 8</div>
+    <h2>General Provisions</h2>
+
+    <p class="sub">8.1 Independent Contractor</p>
+    <p>Provider is an independent contractor. Nothing in this Agreement creates an employment, partnership, or agency relationship between the parties.</p>
+
+    <p class="sub">8.2 Amendments</p>
+    <p>This Agreement may only be amended in writing, signed by both parties.</p>
+
+    <p class="sub">8.3 Entire Agreement</p>
+    <p>This Agreement constitutes the entire understanding between the parties and supersedes all prior negotiations, representations, and agreements relating to its subject matter.</p>
+
+    <p class="sub">8.4 Governing Law</p>
+    <p>This Agreement shall be governed by and construed in accordance with the laws of the state in which Provider is domiciled, without regard to conflict of laws principles.</p>
+
+    <p class="sub">8.5 Dispute Resolution</p>
+    <p>Any disputes arising under this Agreement shall first be submitted to good-faith mediation. If mediation fails, disputes shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.</p>
+  </div>
+
+  <!-- Signatures -->
+  <div class="signatures">
+    <div class="sig-block">
+      <div class="sig-label">Service Provider</div>
+      <div class="sig-name">RunWave.ai</div>
+      <div class="sig-line"></div>
+      <div class="sig-field-label">Authorized Signature</div>
+      <div class="sig-line" style="height:1.5rem; width:75%;"></div>
+      <div class="sig-field-label">Printed Name &amp; Title</div>
+      <div class="sig-date"></div>
+      <div class="sig-field-label">Date</div>
+    </div>
+    <div class="sig-block">
+      <div class="sig-label">Client</div>
+      <div class="sig-name">Jay Campbell — JayCampbell.com</div>
+      <div class="sig-line"></div>
+      <div class="sig-field-label">Authorized Signature</div>
+      <div class="sig-line" style="height:1.5rem; width:75%;"></div>
+      <div class="sig-field-label">Printed Name &amp; Title</div>
+      <div class="sig-date"></div>
+      <div class="sig-field-label">Date</div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    This document is a professional service agreement between RunWave.ai and JayCampbell.com. &nbsp;|&nbsp; Confidential.
+  </div>
+
+</div>
+</body>
+</html>
